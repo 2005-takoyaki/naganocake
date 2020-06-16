@@ -1,5 +1,5 @@
 class Admin::GenresController < ApplicationController
-  def new
+  def index
   end
 
   def edit
