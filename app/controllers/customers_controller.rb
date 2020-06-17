@@ -1,19 +1,19 @@
 class CustomersController < ApplicationController
   def show
     # ログイン機能作成後、current_customerでの処理に変更
-    @customer = Customer.first
+    @customer = current_customer
   end
 
   def edit
-    @customer = Customer.first
+    @customer = current_customer
   end
 
   def update
-    @customer = Customer.first
+    @customer = current_customer
     if @customer.update(customer_params)
       redirect_to customers_path
     else
-      render action: :edit_customer
+      render action: :edit
     end
   end
 
