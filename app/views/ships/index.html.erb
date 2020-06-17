@@ -1,3 +1,5 @@
+<div class="container">
+
 <div class="row">
   <div class="col">
     <h2>配送先登録 / 一覧</h2>
@@ -7,22 +9,19 @@
       <%= form_for @ship_new do |f| %>
 
         <div class="field row">
-          <%= f.label :"郵便番号(ハイフンなし)", class: "col-sm-2 col-form-label" %>
-          <%= f.text_field :postal_code, class: "ship_postal_code col-sm-10", size: 20  %>
+          <%= f.label :"郵便番号(ハイフンなし)", class: "col-3 col-form-label" %>
+          <%= f.text_field :postal_code, class: "form ship_postal_code", size: 20  %>
         </div>
 
         <div class="field row">
-          <%= f.label :住所, class: "col-sm-2 col-form-label" %>
-          <%= f.text_field :address, class: "ship_address col-sm-10", size: 40 %>
+          <%= f.label :住所, class: "col-3 col-form-label" %>
+          <%= f.text_field :address, class: "form ship_address", size: 40 %>
         </div>
 
         <div class="field row">
-          <%= f.label :宛名, class: "col-sm-2 col-form-label" %>
-          <%= f.text_field :name, class: "ship_name col-sm-7", size: 20  %>
-        </div>
-
-        <div class="actions row">
-          <%= f.submit value: "登録する", class: "btn btn-success col-sm-3" %>
+          <%= f.label :宛名, class: "col-3 col-form-label" %>
+          <%= f.text_field :name, class: "form ship_name", size: 20  %>
+          <%= f.submit value: "登録する", class: "btn btn-success float-right" %>
         </div>
 
       <% end %>
@@ -33,8 +32,8 @@
 <!-- 配送先一覧 -->
 <div class="row">
   <div class="col">
-    <table class="table">
-      <thead>
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
         <tr>
           <th>郵便番号</th>
           <th>住所</th>
@@ -50,12 +49,13 @@
           <td><%= ship.address %></td>
           <td><%= ship.name %></td>
           <td>
-            <%= link_to "編集する", edit_ship, class: "btn btn-primary" %>
-            <%= link_to "削除する", edit_ship, class: "btn btn-danger", method: :delete %>
+            <%= link_to "編集する", edit_ship_path(1), class: "btn btn-primary float-left" %>
+            <%= link_to "削除する", ship_path(1), class: "btn btn-danger float-right", method: :delete %>
           </td>
         </tr>
         <% end %>
       </tbody>
     </table>
   </div>
+</div>
 </div>
