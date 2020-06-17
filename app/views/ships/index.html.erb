@@ -47,10 +47,8 @@
           <td><%= ship.address %></td>
           <td><%= ship.name %></td>
           <td>
-            <%= link_to "編集する", edit_ship_path(1), class: "btn btn-primary float-left" %>
-            <!-- <%= link_to "編集する", edit_ship_path(ship), class: "btn btn-primary float-left" %> -->
-            <%= link_to "削除する", ship_path(1), class: "btn btn-danger float-right", method: :delete %>
-            <!-- <%= link_to "削除する", ship_path(ship), class: "btn btn-danger float-right", method: :delete %> -->
+            <%= link_to "編集する", edit_ship_path(ship), class: "btn btn-primary float-left" %>
+            <%= link_to "削除する", ship_path(ship), class: "btn btn-danger float-right", method: :delete %>
           </td>
         </tr>
         <% end %>

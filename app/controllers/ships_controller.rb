@@ -1,10 +1,9 @@
 class ShipsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     @ship_new = Ship.new
-    @ships = Ship.where(customer_id: 1)
-    # @ships = Ship.where(customer_id: current_customer.id)
+    @ships = Ship.where(customer_id: current_customer.id)
   end
 
   def edit
@@ -21,20 +20,21 @@ class ShipsController < ApplicationController
   end
 
   def create
-    # @customer = current_customer
-    @customer = Customer.find(1)
+    @customer = current_customer
     @ship_new = Ship.new(ship_params)
     @ship_new.customer_id = @customer.id
     if @ship_new.save
       redirect_to ships_path
     else
-      @ships = Ship.where(customer_id: 1)
-      # @ships = Ship.where(customer_id: current_customer.id)
+      @ships = Ship.where(customer_id: current_customer.id)
       render 'index'
     end
   end
 
   def destroy
+    @ship = Ship.find(params[:id])
+    @ship.destroy
+    redirect_to ships_path
   end
 
 
