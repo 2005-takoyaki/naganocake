@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # デバイス
-  devise_for :customers
+  devise_for :customers, controllers: {
+    registrations: 'customers/registrations',
+    sessions: "customers/sessions",
+  }
 
   #顧客
   resource :customers, only: [:show,:edit,:update] do
