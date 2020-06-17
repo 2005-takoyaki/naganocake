@@ -1,2 +1,24 @@
-<h1>Admin::Admin#new</h1>
-<p>Find me in app/views/admin/admin/new.html.erb</p>
+<div class="row">
+  <div class="col">
+    <h2>管理者ログイン</h2>
+    <div class="form-row text-center justify-content-center">
+      <%= form_for :admin, url: admin_sign_in_path do |f| %>
+
+        <div class="field">
+          <%= f.label :メールアドレス, class: "col-4" %>
+          <%= f.email_field :email, class: "col-6", size: 60 %>
+        </div>
+
+        <div class="field">
+          <%= f.label :パスワード, class: "col-4" %>
+          <%= f.password_field :password, class: "col-6", size: 60 %>
+        </div>
+
+        <div class="actions justify-content-center">
+          <%= f.submit "ログイン", class: "btn btn-primary" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
