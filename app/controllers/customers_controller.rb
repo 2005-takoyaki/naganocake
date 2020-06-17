@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
   def show
-    @customer = current_customer
+    # ログイン機能作成後、current_customerでの処理に変更
+    @customer = Customer.first
   end
 
   def edit
