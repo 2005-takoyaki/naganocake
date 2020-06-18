@@ -23,3 +23,9 @@
     password: Faker::Number.number(digits: 6)
   )
 end
+
+#管理者作成
+Admin.create!(
+   email: 't@t',
+   password: 'zaq',
+)
