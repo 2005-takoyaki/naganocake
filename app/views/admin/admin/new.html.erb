@@ -6,12 +6,12 @@
 
         <div class="field">
           <%= f.label :メールアドレス, class: "col-4" %>
-          <%= f.email_field :email, class: "col-6", size: 60 %>
+          <%= f.email_field :email, class: "col-6", size: 60, value: "#{@email}" %>
         </div>
 
         <div class="field">
           <%= f.label :パスワード, class: "col-4" %>
-          <%= f.password_field :password, class: "col-6", size: 60 %>
+          <%= f.password_field :password, class: "col-6", size: 60, value: "#{@password}" %>
         </div>
 
         <div class="actions justify-content-center">
