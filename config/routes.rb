@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_scope :customer do
     get '/customers/sign_in', to: 'customers/sessions#new'
     post '/customers/sign_in', to: 'customers/sessions#create'
-    delete '/customers/sign_out', to: 'customers/sessions#destroy'
+    get '/customers/sign_out', to: 'customers/sessions#destroy'
     get '/customers/sign_up', to: 'customers/registrations#new'
     post '/customers', to: 'customers/registrations#create'
   end
@@ -59,9 +59,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:index,:show,:update]
     patch '/order_products/:id', to: 'orders#products_update'
   end
-
-  # ルートパス
-  root 'products#top'
 
 
 
