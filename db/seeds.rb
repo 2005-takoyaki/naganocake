@@ -27,3 +27,9 @@
     genre: Faker::Commerce.genre
   )
 end
+
+#管理者作成
+Admin.create!(
+   email: 't@t',
+   password: 'zaq',
+)
