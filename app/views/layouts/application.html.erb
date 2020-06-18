@@ -12,6 +12,9 @@
   <body>
     <!-- ヘッダー -->
     <header id="header">
+      <% if customer_signed_in? %>
+        <%= link_to 'ログアウト', customers_sign_out_path, method: :delete %>
+      <% end %>
     </header>
 
     <div class="container">
