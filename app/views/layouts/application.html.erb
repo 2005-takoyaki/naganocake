@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <!-- 顧客のヘッダー -->
+    <!-- ヘッダー -->
     <header class="navbar navbar-fixed-top">
       <div class="container">
 
@@ -18,43 +18,46 @@
           <span>NAGANO CAKE</span>
         </nav>
         <nav>
-          <ul class="nav navbar  navbar-light">
-            <!--if文でサインインとアウト時の表示を変更-->
-            <% if customer_signed_in? %>
-            <li class="nav-item pr-5">
-              <span>ようこそ、<%= current_customer.last_name %>さん！</span>
-            </li>
-            <li class="nav-item">
-              <%= link_to ' マイページ ', '#', class: 'btn btn-light' %>
-            </li>
-            <li class="nav-item pl-4">
-              <%= link_to ' 商品一覧 ', '#', class: 'btn btn-light' %>
-            </li>
-            <li class="nav-item pl-4">
-              <%= link_to ' カート ', '#', class: 'btn btn-light' %>
-            </li>
-            <li class="nav-item pl-4">
-              <%= link_to ' ログアウト ', customers_sign_out_path , class: 'btn btn-light',  method: :delete %>
-            </li>
-            <% else %>
+            <ul class="nav navbar  navbar-light">
+              <!--if文でサインインとアウト時の表示を変更-->
+              <% if customer_signed_in? %>
+              <li class="pr-5">
+                <span>ようこそ、<%= current_customer.last_name %>さん!</span>
+              </li>
+              <li class="nav-item">
+                <%= link_to ' マイページ ', '#', class: 'btn btn-light' %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to ' 商品一覧 ', '#', class: 'btn btn-light' %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to ' カート ', '#', class: 'btn btn-light' %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to ' ログアウト ', customers_sign_out_path , class: 'btn btn-light', method: :delete %>
+              </li>
+              <% else %>
 
-            <li class="nav-item">
-              <%= link_to ' 商品一覧 ', '#', class: 'btn btn-light' %>
-            </li>
-            <li class="nav-item pl-4">
-              <%= link_to ' ログイン ', customers_sign_in_path, class: 'btn btn-light' %>
-            </li>
-            <li class="nav-item pl-4">
-              <%= link_to ' 新規登録 ', customers_sign_up_path, class: 'btn btn-light' %>
-            </li>
-            <% end %>
-          </ul>
+              <li class="nav-item">
+                <%= link_to ' 商品一覧 ', '#', class: 'btn btn-light' %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to ' ログイン ', customers_sign_in_path, class: 'btn btn-light' %>
+              </li>
+              <li class="nav-item pl-4">
+                <%= link_to ' 新規登録 ', customers_sign_up_path, class: 'btn btn-light' %>
+              </li>
+              <% end %>
+            </ul>
         </nav>
+
+      </div>
+    </header>
 
     </header>
 
-    <!--　ボディー -->
-    <%= yield %>
+      <%= yield %>
+    </div>
 
     <!-- フッター -->
     <footer id="footer">
