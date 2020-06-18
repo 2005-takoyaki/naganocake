@@ -1,18 +1,6 @@
 Rails.application.routes.draw do
   # デバイス
-  # devise_for :customers, :controllers => {
-  # :registrations => 'customers/registrations',
-  # :sessions => 'customers/sessions'
-  # }
-
-  devise_for :customers, skip: :all
-  devise_scope :customer do
-    get '/customers/sign_in', to: 'customers/sessions#new'
-    post '/customers/sign_in', to: 'customers/sessions#create'
-    delete '/customers/sign_out', to: 'customers/sessions#destroy'
-    get '/customers/sign_up', to: 'customers/registrations#new'
-    post '/customers', to: 'customers/registrations#create'
-  end
+  devise_for :customers
 
   #顧客
   resource :customers, only: [:show,:edit,:update] do
@@ -61,8 +49,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:index,:show,:update]
     patch '/order_products/:id', to: 'orders#products_update'
   end
-
-  root 'products#top'
 
 
 
