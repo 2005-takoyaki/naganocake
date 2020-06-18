@@ -1,41 +1,37 @@
-<div class="container">
-  <div class="row my-4">
-    <div class="col pl-5">
-      <h5><span class="bg-info text-light">会員の方はこちらからログイン</span></h5>
+<div class="row my-4">
+  <div class="col pl-5">
+    <h5><span class="bg-info text-light">会員の方はこちらからログイン</span></h5>
+  </div>
+</div>
+
+<%= form_for(resource, as: resource_name, url: customers_sign_in_path) do |f| %>
+<!-- ログインフォーム -->
+  <div class="form-row">
+    <div class="form-group pl-5">
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
   </div>
 
-
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-row">
-        <div class="form-group pl-5">
-          <%= f.label :email, "メールアドレス" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-      </div>
-
-      <div class="form-row">
-      <div class="form-group pl-5">
-        <%= f.label :password, "パスワード　　" %>
-        <%= f.password_field :password, autocomplete: "current-password" %>
-        <p>→パスワードを忘れた方はこちら</p>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="actions pl-5">
-        <%= f.submit('ログイン',class: 'btn btn-primary')%>
-      </div>
-    </div>
-
-  <% end %>
-
-
-  <div class="row my-4">
-    <div class="col pl-5">
-      <h5><span class="bg-info text-light">登録がお済みでない方</span></h5>
-      <span class="col pl-5"><%= render "customers/shared/links" %> から新規登録を行って下さい。</span>
+  <div class="form-row">
+    <div class="form-group pl-5">
+      <%= f.label :password, "パスワード　　" %>
+      <%= f.password_field :password, autocomplete: "current-password" %>
+      <p>→パスワードを忘れた方はこちら</p>
     </div>
   </div>
 
+  <div class="form-row">
+    <div class="actions pl-5">
+      <%= f.submit('ログイン',class: 'btn btn-primary')%>
+    </div>
+  </div>
+
+<% end %>
+
+<div class="row my-4">
+  <div class="col pl-5">
+    <h5><span class="bg-info text-light">登録がお済みでない方</span></h5>
+    <span class="col pl-5"><%= render "customers/shared/links" %> から新規登録を行って下さい。</span>
+  </div>
 </div>
