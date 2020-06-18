@@ -10,14 +10,14 @@
   </head>
 
   <body>
-    <!-- ヘッダー -->
-    <header class="navbar navbar-fixed-top">
-      <div class="container">
+    <div class="container">
+      <!-- ヘッダー -->
+      <header class="navbar navbar-fixed-top">
 
-        <nav class="navbar-brand">
-          <span>NAGANO CAKE</span>
-        </nav>
-        <nav>
+          <nav class="navbar-brand">
+            <span>NAGANO CAKE</span>
+          </nav>
+          <nav>
             <ul class="nav navbar  navbar-light">
               <!--if文でサインインとアウト時の表示を変更-->
               <% if customer_signed_in? %>
@@ -34,7 +34,7 @@
                 <%= link_to ' カート ', '#', class: 'btn btn-light' %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to ' ログアウト ', customers_sign_out_path , class: 'btn btn-light', method: :delete %>
+                <%= button_to ' ログアウト ', customers_sign_out_path , class: 'btn btn-light', method: :delete %>
               </li>
               <% else %>
 
@@ -49,18 +49,15 @@
               </li>
               <% end %>
             </ul>
-        </nav>
-
-      </div>
-    </header>
-
-    </header>
-
+          </nav>
+      </header>
+      
+      <!-- ボディ -->
       <%= yield %>
-    </div>
 
-    <!-- フッター -->
-    <footer id="footer">
-    </footer>
+      <!-- フッター -->
+      <footer id="footer">
+      </footer>
+    </div>
   </body>
 </html>
