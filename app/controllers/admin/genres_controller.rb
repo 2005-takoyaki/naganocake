@@ -41,7 +41,7 @@ end
   end
 
   def current_admin
-  Admin.find_by(params[:id])
+  Admin.find_by(params[:admin_id])
   end
 
 
