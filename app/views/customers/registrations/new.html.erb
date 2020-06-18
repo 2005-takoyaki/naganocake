@@ -6,6 +6,7 @@
 
 <%= form_for(resource, as: resource_name, url: customers_path) do |f| %>
   <!-- 新規会員登録フォーム -->
+
   <%= render "customers/shared/error_messages", resource: resource %>
 
   <div class="form-row">
@@ -108,4 +109,4 @@
   </div>
 </div>
 
-</div>
+

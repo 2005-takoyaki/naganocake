@@ -1,2 +1,34 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<h2>ジャンル編集</h2>
+
+<%= form_for @genre, url: admin_genre_path do |f| %>
+
+<div class="er">
+<% if @genre.errors.any? %>
+	<h3><%= @genre.errors.count %>error occurrence</h3>
+	<ul>
+		<% @genre.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+<% end %>
+</div>
+
+   <form class="form-inline">
+    <div class="form-group">
+		<%= f.label :ジャンル %>
+		<%= f.text_field :genre_name %>
+
+
+    <div class="form-check form-check-inline">
+	  <label><%= f.radio_button :is_valid, "有効" , checked: true %> 有効 </label>
+    </div>
+
+    <div class="form-check form-check-inline">
+	  <label><%= f.radio_button :is_valid, "false" %> 無効</label>
+    </div>
+
+		<%= f.submit "変更を保存する", class: "btn btn-primary" %>
+    </div>
+
+   </form>
+<% end %>
