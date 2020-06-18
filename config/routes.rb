@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   # デバイス
-  # devise_for :customers
   devise_for :customers, skip: :all
   devise_scope :customer do
     get '/customers/sign_in', to: 'customers/sessions#new'
@@ -9,6 +8,9 @@ Rails.application.routes.draw do
     get '/customers/sign_up', to: 'customers/registrations#new'
     post '/customers', to: 'customers/registrations#create'
   end
+
+  #ルート設定
+  root "products#top"
 
   #顧客
   resource :customers, only: [:show,:edit,:update] do
