@@ -1,5 +1,5 @@
 class ShipsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_customer!
 
   def index
     @ship_new = Ship.new
