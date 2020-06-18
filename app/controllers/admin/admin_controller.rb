@@ -28,13 +28,4 @@ class Admin::AdminController < ApplicationController
     redirect_to admin_sign_in_path
   end
 
-  private
-
-  # 未ログイン管理者を弾く
-  def authenticate_admin
-    if current_admin == nil
-      redirect_to admin_sign_in_path
-    end
-  end
-
 end
