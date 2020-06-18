@@ -1,8 +1,12 @@
 class Admin::AdminController < ApplicationController
+  before_action :authenticate_admin, only: [:index, :destroy]
+
   def new
   end
 
   def index
+    range = Date.today.beginning_of_day..Date.today.end_of_day
+    @today_order = Order.where(created_at: range)
   end
 
   def create
@@ -22,6 +26,15 @@ class Admin::AdminController < ApplicationController
   def destroy
     log_out
     redirect_to admin_sign_in_path
+  end
+
+  private
+
+  # 未ログイン管理者を弾く
+  def authenticate_admin
+    if current_admin == nil
+      redirect_to admin_sign_in_path
+    end
   end
 
 end
