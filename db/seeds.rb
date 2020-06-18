@@ -20,6 +20,16 @@
     address: gimei.address.kanji,
     phone_number: Faker::Number.leading_zero_number(digits: 10),
     is_valid: Faker::Boolean.boolean,       #boolean
-    password: Faker::Number.number(digits: 6)
+    password: Faker::Number.number(digits: 6),
+    name: Faker::Commerce.product_name,
+    taxed_price: Faker::Commerce.price,
+    non_taxed_price: Faker::Commerce.price,
+    genre: Faker::Commerce.genre
   )
 end
+
+#管理者作成
+Admin.create!(
+   email: 't@t',
+   password: 'zaq',
+)
