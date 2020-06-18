@@ -12,7 +12,6 @@ class ProductsController < ApplicationController
   end
 
   def top
-  	@product = Product.top
   end
 
   private
