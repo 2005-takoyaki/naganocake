@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   # デバイス
+  # devise_for :customers, :controllers => {
+  # :registrations => 'customers/registrations',
+  # :sessions => 'customers/sessions'
+  # }
+
   devise_for :customers, skip: :all
   devise_scope :customer do
     get '/customers/sign_in', to: 'customers/sessions#new'

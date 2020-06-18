@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
+  before_action :authenticate_customer!
+
   def show
-    # ログイン機能作成後、current_customerでの処理に変更
     @customer = current_customer
   end
 
@@ -20,7 +21,11 @@ class CustomersController < ApplicationController
   def leave
   end
 
-  def lert
+  def left
+    customer = current_customer
+    customer.update!(is_valid: false)
+    reset_session
+    redirect_to root_path
   end
 
   private
