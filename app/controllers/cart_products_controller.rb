@@ -3,6 +3,7 @@ class CartProductsController < ApplicationController
   end
 
   def index
+    @product = Product.first
   end
 
   def destroy
