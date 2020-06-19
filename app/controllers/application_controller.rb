@@ -12,5 +12,15 @@ class ApplicationController < ActionController::Base
 
   include Admin::CustomersHelper
 
+  def current_cart
+    if session[:cart_id]  # 1
+      @cart = Customer.find(session[:cart_id])  # 顧客1
+    else
+      @cart = CartProduct.create
+      @cart.user_id = current_user  # 買い物カゴ商品テーブルを作成 id:1
+      session[:cart_id] = current_user.id
+    end
+  end
+
 
 end

@@ -3,7 +3,7 @@ class CartProductsController < ApplicationController
   end
 
   def index
-    @product = Product.first
+    @cart_products = current_cart.
   end
 
   def destroy

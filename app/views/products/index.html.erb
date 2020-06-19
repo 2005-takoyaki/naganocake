@@ -4,9 +4,9 @@
 				<tr>
 					<th><span>ジャンル検索</span></th>
 					<td>
-						<% @genre.each do |genre| %>
-						<%= link_to  product_path(@genre.id) do %>
-						<%= product.genre %>
+						<% @genres.each do |genre| %>
+						<%= link_to  product_path(genre.id) do %>
+						<%= @products.name %>
 						<% end%>
 					</td>
 						<% end %>
