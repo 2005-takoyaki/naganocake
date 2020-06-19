@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
+  helper_method :current_cart
+
   protected
 
     def configure_permitted_parameters
@@ -16,9 +18,9 @@ class ApplicationController < ActionController::Base
     if session[:cart_id]  # 1
       @cart = Customer.find(session[:cart_id])  # 顧客1
     else
-      @cart = CartProduct.create
-      @cart.user_id = current_user  # 買い物カゴ商品テーブルを作成 id:1
-      session[:cart_id] = current_user.id
+      # @cart = CartProduct.create(customer_id: current_customer.id)
+      CartProduct.create(customer_id: current_customer.id)
+      session[:cart_id] = current_customer.id
     end
   end
 

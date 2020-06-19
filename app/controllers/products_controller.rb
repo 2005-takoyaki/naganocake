@@ -8,7 +8,9 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @genres = Genre.all
   	@product = Product.find(params[:id])
+    @cart_products = current_cart.cart_products
   end
 
   def top

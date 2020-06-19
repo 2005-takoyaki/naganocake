@@ -11,13 +11,15 @@
       </tr>
     </thead>
     <tbody>
+      <% @cart_products.each do |cart| %>
       <tr>
-        <!-- <td><%= @product.name %></td> -->
+        <td><%= cart.product.name %></td>
         <!-- <td><%= @product.non_taxed_price %></td> -->
         <td></td>
         <td></td>
         <td></td>
       </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
