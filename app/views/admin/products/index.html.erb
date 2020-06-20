@@ -1,0 +1,31 @@
+<h2><span span style="background-color:#C0C0C0">商品一覧</span></h2>
+
+<table class="table">
+  <thead>
+    <tr class="thead-light">
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.product_id %></td>
+        <td><%= link_to product.product_name, product, class: "product_#{product.id}" %></td>
+        <td><%= converting_to_jpy(product.product_non_taxed_price) %></td>
+        <td>"<%= ジャンル %>"</td>
+        <td><%= sales(product.has_sold) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "新規登録",new_admin_product_path, class: "btn-sm btn-success" %>
+
+
+
+
