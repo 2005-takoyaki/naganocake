@@ -13,8 +13,7 @@
     <tbody>
       <% @cart_products.each do |cart| %>
       <tr>
-        <td><%= cart.product.name %></td>
-        <!-- <td><%= @product.non_taxed_price %></td> -->
+        <td><%= cart.product&.name %></td>
         <td></td>
         <td></td>
         <td></td>

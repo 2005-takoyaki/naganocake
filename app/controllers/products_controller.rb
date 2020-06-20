@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   def show
     @genres = Genre.all
   	@product = Product.find(params[:id])
-    @cart_products = current_cart.cart_products
+    @cart_product = CartProduct.new
   end
 
   def top

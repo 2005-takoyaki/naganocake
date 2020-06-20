@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -15,12 +16,12 @@ class ApplicationController < ActionController::Base
   include Admin::CustomersHelper
 
   def current_cart
-    if session[:cart_id]  # 1
-      @cart = Customer.find(session[:cart_id])  # 顧客1
+    if session[:cart_id]
+      @cart = Customer.find(session[:cart_id])
     else
-      # @cart = CartProduct.create(customer_id: current_customer.id)
-      CartProduct.create(customer_id: current_customer.id)
-      session[:cart_id] = current_customer.id
+      @cart = current_customer
+      session[:cart_id] = @cart.id
+      @cart
     end
   end
 

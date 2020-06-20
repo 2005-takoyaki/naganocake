@@ -70,3 +70,4 @@ gem 'kaminari', '~> 0.17.0'
 # 顧客データを自動生成するためのgem
 gem 'gimei'
 gem 'faker'
+gem 'pry-byebug'

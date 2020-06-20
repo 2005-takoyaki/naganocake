@@ -25,15 +25,13 @@
 					<%= @product.introduction%><br>
 					<!--<p>¥</p><%= @product.non_taxed_price%><p>(税込商品)</p>-->
 
-				<form class="form-inline">
-					<%= form_with model: @cart_products, url: cart_products_path, method: :post do |f| %>
+					<%= form_with model: @cart_product, url: cart_products_path(product_id: @product.id), method: :post, local: true do |f| %>
 						<%= f.label :quantity, "個数選択"%>
 						<%= f.select :quantity, [1,2,3,4,5,6,7,8,9] %>
-						<%= f.hidden_field :product_id, :value => params[:id] %>
+						<%= f.hidden_field :product_id, :value => @product.id %>
 						<%= f.submit('カートに入れる',class: "btn btn-primary") %>
 						<!--<%= link_to ""%>-->
 					<% end %>
-				</form>
 				</div>
 			</div>
 		</div>

@@ -1,12 +1,14 @@
 class CartProductsController < ApplicationController
   def add
     @cart_product = current_cart.cart_products.find_by(product_id: params[:product_id])
-    if @cart_product.blank?
+    binding.pry
+    if @cart_product&.product_id.nil?
       @cart_product = current_cart.cart_products.build(cart_product_params)
+      @cart_product.save
+      redirect_to root_path
+    else
+      redirect_to cart_products_path
     end
-    @cart_product.quantity += params[:quantity].to_i
-    @cart_product.save
-    redirect_to root_path
   end
 
   def index
@@ -24,6 +26,7 @@ class CartProductsController < ApplicationController
 
   private
   def cart_product_params
-    params.require(:cart_product).permit(:product_id)
+    params.require(:cart_product).permit(:product_id,:quantity,:customer_id)
   end
+
 end
