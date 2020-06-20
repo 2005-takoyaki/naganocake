@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   # デバイス
-  devise_for :customers
+  devise_for :customers, skip: :all
+  devise_scope :customer do
+    get '/customers/sign_in', to: 'customers/sessions#new'
+    post '/customers/sign_in', to: 'customers/sessions#create'
+    delete '/customers/sign_out', to: 'customers/sessions#destroy'
+    get '/customers/sign_up', to: 'customers/registrations#new'
+    post '/customers', to: 'customers/registrations#create'
+  end
+
+  #ルート設定
+  root "products#top"
 
   #顧客
   resource :customers, only: [:show,:edit,:update] do
@@ -11,11 +21,12 @@ Rails.application.routes.draw do
     resources :customers, only: [:index,:show,:edit,:update]
   end
 
-  #ログイン
+  #管理者ログイン
   namespace :admin do
     get '/sign_in', to: 'admin#new'
     post '/sign_in', to: 'admin#create'
     delete '/sign_out', to: 'admin#destroy'
+    get '/', to: 'admin#index'
   end
 
   #商品
