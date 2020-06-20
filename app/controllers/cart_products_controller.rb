@@ -1,7 +1,6 @@
 class CartProductsController < ApplicationController
   def add
     @cart_product = current_cart.cart_products.find_by(product_id: params[:product_id])
-    binding.pry
     if @cart_product&.product_id.nil?
       @cart_product = current_cart.cart_products.build(cart_product_params)
       @cart_product.save
