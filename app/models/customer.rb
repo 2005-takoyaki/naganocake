@@ -13,5 +13,6 @@ class Customer < ApplicationRecord
 
 
   has_many :ships, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
 end
