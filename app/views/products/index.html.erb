@@ -23,7 +23,7 @@
 				<div class ="col-2">
 					<% @products.each do |product| %>
 						<%= attachment_image_tag product, :image, :fill, 100, 100, format: 'jpeg'%><br>
-						<p><%= product.name %></p><br>
+						<p><%= link_to product.name, product_path(product) %></p><br>
 						<p>¥<%= product.non_taxed_price %></p>
 					<% end %>
 				</div>

@@ -14,7 +14,9 @@
       <% @cart_products.each do |cart| %>
       <tr>
         <td><%= cart.product&.name %></td>
-        <td></td>
+        <% tax_price = cart.product.non_taxed_price * 1.1 %>
+        <td><%= tax_price.floor %></td>
+        <td><%= cart.quantity %></td>
         <td></td>
         <td></td>
       </tr>

@@ -4,7 +4,7 @@ class CartProductsController < ApplicationController
     if @cart_product&.product_id.nil?
       @cart_product = current_cart.cart_products.build(cart_product_params)
       @cart_product.save
-      redirect_to root_path
+      redirect_to cart_products_path
     else
       redirect_to cart_products_path
     end
