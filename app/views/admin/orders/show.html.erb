@@ -19,11 +19,11 @@
           <!-- 商品名 -->
           <td><%= order_product.product.name %></td>
           <!-- 単価（税込） -->
-          <td><%= tax(order_product.product.non_taxed_price).to_s(:delimited) %></td>
+          <td><%= order_product.taxed_price.to_s(:delimited) %></td>
           <!-- 数量 -->
           <td><%= order_product.number %></td>
           <!-- 小計 -->
-          <td><%= (tax(order_product.product.non_taxed_price) * order_product.number).to_s(:delimited) %></td>
+          <td><%= (order_product.taxed_price * order_product.number).to_s(:delimited) %></td>
           <!-- 製作ステータス -->
           <%= form_for order_product, url: "/admin/order_products/#{order_product.id}", class: "form-group" do |f| %>
             <td>
@@ -42,17 +42,17 @@
 
     <div class="field row">
       <p class="col-6 font-weight-bold">商品合計</p>
-      <p class="col-6"><%= @order.billing_total - @order.fare %>円</p>
+      <p class="col-6"><%= (@order.billing_total - @order.fare).to_s(:delimited) %>円</p>
     </div>
 
     <div class="field row">
       <p class="col-6 font-weight-bold">送料</p>
-      <p class="col-6"><%= @order.fare %>円</p>
+      <p class="col-6"><%= @order.fare.to_s(:delimited) %>円</p>
     </div>
 
     <div class="field row">
       <p class="col-6 font-weight-bold">請求金額合計</p>
-      <p class="col-6"><%= @order.billing_total %>円</p>
+      <p class="col-6"><%= @order.billing_total.to_s(:delimited) %>円</p>
     </div>
 
   </div>
