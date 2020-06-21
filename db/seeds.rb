@@ -31,3 +31,26 @@ OrderProduct.create!(
 
 
 
+# 顧客を自動生成
+20.times do |n|
+  gimei = Gimei.new
+
+  Customer.create(
+    last_name: gimei.last.kanji,
+    first_name: gimei.first.kanji,
+    kana_last_name: gimei.last.katakana,
+    kana_first_name: gimei.first.katakana,
+    email: Faker::Internet.email,
+    postal_code: Faker::Number.number(digits: 7),  #string
+    address: gimei.address.kanji,
+    phone_number: Faker::Number.leading_zero_number(digits: 10),
+    is_valid: Faker::Boolean.boolean,       #boolean
+    password: Faker::Number.number(digits: 6),
+  )
+end
+
+#管理者作成
+Admin.create!(
+   email: 't@t',
+   password: 'zaq',
+)
