@@ -1,4 +1,6 @@
 class CartProductsController < ApplicationController
+  before_action :authenticate_customer!
+
   def add
     @cart_product = current_cart.cart_products.find_by(product_id: params[:product_id])
     if @cart_product&.product_id.nil?
@@ -12,6 +14,13 @@ class CartProductsController < ApplicationController
 
   def index
     @cart_products = current_cart.cart_products
+    @total_price = 0
+    @cart_products.each do |cart_product|
+      product_quantity = cart_product.quantity
+      sub_total = product_quantity * cart_product.product.non_taxed_price
+      @total_price += sub_total
+    end
+    @total_price *= 1.1
   end
 
   def destroy
@@ -24,7 +33,6 @@ class CartProductsController < ApplicationController
     cart_products = current_cart.cart_products
     cart_products.each do |cart_product|
       cart_product.destroy
-      binding.pry
     end
     redirect_to cart_products_path
   end
