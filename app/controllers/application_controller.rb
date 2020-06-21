@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  include Admin::AdminHelper
+  include Admin::GenresHelper
+  include Admin::CustomersHelper
+  
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
   helper_method :current_cart
@@ -11,9 +15,8 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :kana_last_name, :kana_first_name, :postal_code, :address, :phone_number])
     end
 
-	include Admin::GenresHelper
 
-  include Admin::CustomersHelper
+  private
 
   def current_cart
     if session[:cart_id]
@@ -25,5 +28,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # 未ログイン管理者を弾く
+  def authenticate_admin
+    if current_admin == nil
+      redirect_to admin_sign_in_path
+    end
+  end
 
 end

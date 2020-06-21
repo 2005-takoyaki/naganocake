@@ -21,11 +21,12 @@ Rails.application.routes.draw do
     resources :customers, only: [:index,:show,:edit,:update]
   end
 
-  #ログイン
+  #管理者ログイン
   namespace :admin do
     get '/sign_in', to: 'admin#new'
     post '/sign_in', to: 'admin#create'
     delete '/sign_out', to: 'admin#destroy'
+    get '/', to: 'admin#index'
   end
 
   #商品
