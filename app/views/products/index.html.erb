@@ -4,9 +4,9 @@
 				<tr>
 					<th><span>ジャンル検索</span></th>
 					<td>
-						<% @genre.each do |genre| %>
-						<%= link_to  product_path(@genre.id) do %>
-						<%= product.genre %>
+						<% @genres.each do |genre| %>
+						<%= link_to  product_path(genre.id) do %>
+						<%= @products.name %>
 						<% end%>
 					</td>
 						<% end %>
@@ -23,7 +23,7 @@
 				<div class ="col-2">
 					<% @products.each do |product| %>
 						<%= attachment_image_tag product, :image, :fill, 100, 100, format: 'jpeg'%><br>
-						<p><%= product.name %></p><br>
+						<p><%= link_to product.name, product_path(product) %></p><br>
 						<p>¥<%= product.non_taxed_price %></p>
 					<% end %>
 				</div>
