@@ -16,7 +16,7 @@
     kana_last_name: gimei.last.katakana,
     kana_first_name: gimei.first.katakana,
     email: Faker::Internet.email,
-    postal_code: Faker::Address.postcode,  #string
+    postal_code: Faker::Number.number(digits: 7),  #string
     address: gimei.address.kanji,
     phone_number: Faker::Number.leading_zero_number(digits: 10),
     is_valid: Faker::Boolean.boolean,       #boolean
