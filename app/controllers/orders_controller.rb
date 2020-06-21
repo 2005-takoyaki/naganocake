@@ -9,10 +9,12 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @customer = Customer.find_by(id: current_customer.id)
+    @ship = Ship.new
+    @customer = Customer.find(current_customer.id)
   end
 
   def confirmation
+    @address = params[:payment_method]
   end
 
   def complete
