@@ -1,6 +1,8 @@
 <div class="row">
-  <div class="col">
-    <h2>注文履歴詳細</h2>
+  <h2 class="col-12">注文履歴詳細</h2>
+
+  <!-- 商品の内訳 -->
+  <div class="col-9">
     <table class="table table-hover">
       <thead class="thead-light">
         <tr>
@@ -14,13 +16,18 @@
       <tbody>
         <% @order.order_products.each do |order_product| %>
         <tr>
+          <!-- 商品名 -->
           <td><%= order_product.product.name %></td>
-          <td><%= order_product.product.non_taxed_price.apply_tax %></td>
+          <!-- 単価（税込） -->
+          <td><%= tax(order_product.product.non_taxed_price).to_s(:delimited) %></td>
+          <!-- 数量 -->
           <td><%= order_product.number %></td>
-          <td><%= order_product.product.non_taxed_price.to_i * order_product.number.to_i %></td>
-          <%= form_for order_product, url: "/admin/order_products/#{order_product.id}" do |f| %>
+          <!-- 小計 -->
+          <td><%= (tax(order_product.product.non_taxed_price) * order_product.number).to_s(:delimited) %></td>
+          <!-- 製作ステータス -->
+          <%= form_for order_product, url: "/admin/order_products/#{order_product.id}", class: "form-group" do |f| %>
             <td>
-              <%= f.select :production_status, Product.production_statuses.keys, class: "production_status" %>
+              <%= f.select :production_status, OrderProduct.production_statuses.keys, class: "form-control production_status" %>
               <%= f.submit value: "更新", class: "btn btn-primary" %>
             </td>
           <% end %>
@@ -28,5 +35,25 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+
+  <!-- 合計金額 -->
+  <div class="col-3">
+
+    <div class="field row">
+      <p class="col-6 font-weight-bold">商品合計</p>
+      <p class="col-6"><%= @order.billing_total - @order.fare %>円</p>
+    </div>
+
+    <div class="field row">
+      <p class="col-6 font-weight-bold">送料</p>
+      <p class="col-6"><%= @order.fare %>円</p>
+    </div>
+
+    <div class="field row">
+      <p class="col-6 font-weight-bold">請求金額合計</p>
+      <p class="col-6"><%= @order.billing_total %>円</p>
+    </div>
+
   </div>
 </div>
