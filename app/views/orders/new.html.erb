@@ -30,7 +30,7 @@
 	<div class="radio-inline">
 	    <%= f.radio_button :address, :登録住所から選択, checked: "checked" %>
 	    <%= f.label :登録住所から選択, class: "job_type_label" %>
-	    <%= f.collection_select :address, Ship.where(customer_id: current_customer.id), :id, :name %>
+	    <%= f.collection_select :address, Ship.where(customer_id: current_customer.id), :id, :view_all_customer_date %>
 	</div>
 
 	<div class="radio-inline">
@@ -46,7 +46,7 @@
           <%= f.label :住所 %>
           <%= f.text_field :address, class: "form ship_address", size: 40 %>
         </div>
- 
+
         <div class="field row">
           <%= f.label :宛名 %>
           <%= f.text_field :address_name, class: "form ship_name", size: 20  %>
@@ -55,12 +55,4 @@
 
 	<%= f.submit value: "確認画面に進む", class: "btn btn-primary" %>
 
-<% end %>
-<br/>
-<% @customer.ships.each do |ship| %>
-    <tr>
-        <td><%= ship.postal_code %></td>
-        <td><%= ship.address %></td>
-        <td><%= ship.name %></td>
-    </tr>
 <% end %>
