@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_scope :customer do
     get '/customers/sign_in', to: 'customers/sessions#new'
     post '/customers/sign_in', to: 'customers/sessions#create'
-    get '/customers/sign_out', to: 'customers/sessions#destroy'
+    delete '/customers/sign_out', to: 'customers/sessions#destroy'
     get '/customers/sign_up', to: 'customers/registrations#new'
     post '/customers', to: 'customers/registrations#create'
   end

@@ -6,8 +6,8 @@
 					<td>
 						<!--scss td {border: none;}-->
 						<% @genres.each do |genre| %>
-						<%= link_to  product_path(genre.id) do %>
-						<%= @product.genre %>
+						<%= link_to product_path(genre.id) do %>
+						<%= @product.genre.genre_name %>
 						<% end%>
 					</td>
 						<% end %>

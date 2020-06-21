@@ -15,9 +15,18 @@ class CartProductsController < ApplicationController
   end
 
   def destroy
+    cart_product = current_cart.cart_products.find_by(product_id: params[:id])
+    cart_product.destroy
+    redirect_to cart_products_path
   end
 
   def destroy_all
+    cart_products = current_cart.cart_products
+    cart_products.each do |cart_product|
+      cart_product.destroy
+      binding.pry
+    end
+    redirect_to cart_products_path
   end
 
   def update
