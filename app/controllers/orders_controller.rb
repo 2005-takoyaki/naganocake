@@ -1,7 +1,11 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.where(customer_id: current_customer.id)
-    @order_products = OrderProduct.where(order_id: @orders)
+    @orders = current_customer.orders
+    @order_products = current_customer.order_products
+    @orders.each do |order|
+      @my_product = order.products
+    end
+    @my_product
   end
 
   def show
