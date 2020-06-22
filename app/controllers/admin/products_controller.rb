@@ -1,11 +1,11 @@
 class Admin::ProductsController < ApplicationController
 
   def index
-    @products = Product.all
+    @products = Product.includes(:genre).where(genres: {is_valid: "true"})
   end
 
   def new
-    @product = Product.new(product_params)
+    @product = Product.new
   end
 
   def show
@@ -19,6 +19,7 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if
+    #binding.pry
     @product.save
     redirect_to '/admin/products'
     else
@@ -30,7 +31,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if
     @product.update(product_params)
-    redirect_to '/admin/products/show'
+    redirect_to admin_product_path(@product.id)
     else
     render :edit
     end
@@ -44,5 +45,5 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.permit(:product).permit( :image_id, :name, :introduction, :non_taxed_price, :has_sold )
+    params.require(:product).permit( :image, :name, :introduction, :non_taxed_price, :has_sold, :genre_id, :genre_name, :is_valid )
   end
