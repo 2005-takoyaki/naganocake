@@ -1,18 +1,17 @@
 <div class="row my-4">
-  <div class="col pl-5">
+  <div class="col-sm pl-5">
     <h5><span class="bg-light">注文履歴詳細</span></h5>
   </div>
 </div>
 
-
 <div class="row">
-	<div class="col-6">
- 		<h5>注文情報</h5>
+	<div class="col-sm-6">
+ 		<span>注文情報</span>
 		<table class="table table-bordered">
 			<tbody class="thead-light">
 				<tr>
 					<th>注文日</th>
-					<td><%= @order.created_at.strftime('%Y/%m/%d')  %></td>
+					<td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
 				</tr>
 				<tr>
 					<th>支払い方法</th>
@@ -26,9 +25,8 @@
 		</table>
 	</div>
 
-	<div class="col-4">
-	 	<h5>請求情報</h5>
-
+	<div class="col-sm-4">
+	 	<span>請求情報</span>
 		<table class="table table-bordered">
 			<tbody class="thead-light">
 				<tr>
@@ -48,9 +46,8 @@
 </div>
 
 <div class="row">
-	<div class="col-7">
-		<h5>注文内容</h5>
-
+	<div class="col-sm-7">
+		<span>注文内容</span>
 		<table class="table table-bordered">
 			<thead class="thead-light">
 				<tr>
