@@ -1,29 +1,73 @@
 <div class="row my-4">
-  <div class="col pl-5">
-    <h5><span class="bg-info text-light">注文履歴詳細</span></h5>
+  <div class="col-sm pl-5">
+    <h5><span class="bg-light">注文履歴詳細</span></h5>
   </div>
 </div>
 
 <div class="row">
-	<div>注文情報</div>
-	<div><%= @order.created_at %></div>
-	<div><%= @order.payment_method %></div>
-	<div><%= @order.order_status %></div>
+	<div class="col-sm-6">
+ 		<span>注文情報</span>
+		<table class="table table-bordered">
+			<tbody class="thead-light">
+				<tr>
+					<th>注文日</th>
+					<td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+				</tr>
+				<tr>
+					<th>支払い方法</th>
+					<td><%= @order.payment_method %></td>
+				</tr>
+				<tr>
+					<th>ステータス</th>
+					<td><%= @order.order_status %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-sm-4">
+	 	<span>請求情報</span>
+		<table class="table table-bordered">
+			<tbody class="thead-light">
+				<tr>
+					<th>商品合計</th>
+					<td><%= (@order.billing_total - @order.fare) %></td>
+				</tr>
+					<th>送料</th>
+					<td><%= @order.fare %></td>
+				</tr>
+				<tr>
+					<th>請求金額</th>
+					<td><%= @order.billing_total %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 
 <div class="row">
-	<div>注文内容</div>
+	<div class="col-sm-7">
+		<span>注文内容</span>
+		<table class="table table-bordered">
+			<thead class="thead-light">
+				<tr>
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>個数</th>
+					<th>小計</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @order_products.each do |order_product| %>
+					<tr>
+						<td><%= order_product.product.name %></td>
+						<td><%= order_product.taxed_price %></td>
+						<td><%= order_product.number %></td>
+						<td><%= order_product.taxed_price * order_product.number%></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
 </div>
 
-<div class="row">
-	<div>請求情報</div>
-	<div>送料<%= @order.fare %>円</div>
-	<div>請求金額<%= @order.billing_total %>円</div>
-</div>
-
-
-<% @order_products.each do |order_product| %>
-	<div>商品番号<%= order_product.product_id %></div>
-	<div>個数<%= order_product.number %></div>
-	<div>税込価格<%= order_product.taxed_price %></div>
-<% end %>
