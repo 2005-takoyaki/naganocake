@@ -8,26 +8,22 @@
 
 # 顧客データを自動生成
 
+
+
 OrderProduct.create!(
-  order_id: 1,
-  product_id: 1,
+  order_id: 4,
+  product_id: 4,
   number: 2,
-  taxed_price: 1100,
-  production_status: "製作待ち"
+  taxed_price: 330,
+  production_status: 1
 )
 
 OrderProduct.create!(
-  order_id: 1,
-  product_id: 3,
+  order_id: 4,
+  product_id: 5,
   number: 3,
-  taxed_price: 990,
-  production_status: "製作待ち"
+  taxed_price: 440,
+  production_status: 1
 )
-
-
-
-
-
-
 
 

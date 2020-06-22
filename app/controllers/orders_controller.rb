@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.where(id: current_customer.id)
+    @orders = Order.where(customer_id: current_customer.id)
     @order_products = OrderProduct.where(order_id: @orders)
   end
 
   def show
-    @order = Order.find_by(id: current_customer.id)
-    @order_products = OrderProduct.where(order_id: @order.id)
+    @order = Order.find(params[:id])
+    @order_products = OrderProduct.where(order_id: @order)
   end
 
   def new
