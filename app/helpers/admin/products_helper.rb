@@ -1,4 +1,5 @@
 module Admin::ProductsHelper
+
 def sales(sales)
 	if sales
 		'販売中'
@@ -14,6 +15,7 @@ end
 def addTax(money,rate)
    taxed_money =  (money*rate).round
    "#{taxed_money.to_s(:delimited, delimiter: ',')}"
+
 end
 
 def jpy(price)

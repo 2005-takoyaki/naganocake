@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# 顧客データを自動生成
+# 顧客を自動生成
 20.times do |n|
   gimei = Gimei.new
 
@@ -16,7 +16,7 @@
     kana_last_name: gimei.last.katakana,
     kana_first_name: gimei.first.katakana,
     email: Faker::Internet.email,
-    postal_code: Faker::Address.postcode,  #string
+    postal_code: Faker::Number.number(digits: 7),  #string
     address: gimei.address.kanji,
     phone_number: Faker::Number.leading_zero_number(digits: 10),
     is_valid: Faker::Boolean.boolean,       #boolean
