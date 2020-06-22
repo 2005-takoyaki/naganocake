@@ -1,0 +1,30 @@
+<h2><span span style="background-color:#C0C0C0">商品一覧</span></h2>
+
+<%= link_to new_admin_product_path do %>
+  <%= embedded_svg("plus-circle.svg", class: "good-svg") %>
+<% end %>
+
+
+<table class="table">
+  <thead>
+    <tr class="thead-light">
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= link_to product.name, admin_product_path(product.id) %></td>
+        <td><%= converting_to_jpy(product.non_taxed_price) %></td>
+        <td><%= product.genre.genre_name %></td>
+        <td><%= sales(product.has_sold) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
