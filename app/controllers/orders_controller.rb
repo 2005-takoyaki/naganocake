@@ -35,8 +35,8 @@ class OrdersController < ApplicationController
       sub_total = product_quantity * cart_product.product.non_taxed_price
       total_price += sub_total
     end
-    aaa = total_price * 1.1
-    order.billing_total = aaa.floor + 800
+    taxed_total_price = total_price * 1.1
+    order.billing_total = taxed_total_price.floor + 800
     order.order_status = 0
     order.save
     cart_products.each do |cart_product|
