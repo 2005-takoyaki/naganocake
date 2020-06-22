@@ -8,40 +8,41 @@
 <div class="row">
 	<div class="col-6">
  		<h5>注文情報</h5>
-
-
-		
-			<table class="table">
+		<table class="table table-bordered">
+			<tbody class="thead-light">
 				<tr>
-					<th class="light">注文日</th>
+					<th>注文日</th>
 					<td><%= @order.created_at.strftime('%Y/%m/%d')  %></td>
 				</tr>
 				<tr>
-					<th class="light">支払い方法</th>
+					<th>支払い方法</th>
 					<td><%= @order.payment_method %></td>
+				</tr>
 				<tr>
-					<th class="light">ステータス</th>
+					<th>ステータス</th>
 					<td><%= @order.order_status %></td>
 				</tr>
-			</table>
-
+			</tbody>
+		</table>
 	</div>
 
 	<div class="col-4">
 	 	<h5>請求情報</h5>
 
-		<table class="table">
-			<tr>
-				<th>商品合計</th>
-				<td><%= (@order.billing_total - @order.fare) %></td>
-			</tr>
-				<th>送料</th>
-				<td><%= @order.fare %></td>
-			</tr>
-			<tr>
-				<th>請求金額</th>
-				<td><%= @order.billing_total %></td>
-			</tr>
+		<table class="table table-bordered">
+			<tbody class="thead-light">
+				<tr>
+					<th>商品合計</th>
+					<td><%= (@order.billing_total - @order.fare) %></td>
+				</tr>
+					<th>送料</th>
+					<td><%= @order.fare %></td>
+				</tr>
+				<tr>
+					<th>請求金額</th>
+					<td><%= @order.billing_total %></td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
 </div>
@@ -50,7 +51,7 @@
 	<div class="col-7">
 		<h5>注文内容</h5>
 
-		<table class="table">
+		<table class="table table-bordered">
 			<thead class="thead-light">
 				<tr>
 					<th>商品名</th>
