@@ -10,11 +10,14 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
-    @customer = Customer.find_by(id: current_customer.id)
+    @order = current_customer.orders.new
+    @ship = current_customer.ships.new
   end
 
   def confirmation
+    @order = current_customer.orders.new(order_params)
+    @order_ship = Ship.find(params[:order][:ship][:id])
+    @ship = current_customer.ships.new(postal_code: params[:order][:ship][:postal_code], address: params[:order][:ship][:address], name: params[:order][:ship][:name])
   end
 
   def complete
@@ -42,5 +45,9 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:customer_id, :fare, :billing_total, :payment_method, :order_status, :postal_code, :address, :address_name)
+  end
+
+  def ship_params
+    params.require(:order).permit(ship: [:customer_id, :name, :postal_code, :address])
   end
 end

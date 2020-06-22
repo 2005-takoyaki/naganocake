@@ -25,13 +25,13 @@
                 <span>ようこそ、<%= current_customer.last_name %>さん!</span>
               </li>
               <li class="nav-item">
-                <%= link_to ' マイページ ', '#', class: 'btn btn-light' %>
+                <%= link_to ' マイページ ', customers_path, class: 'btn btn-light' %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to ' 商品一覧 ', '#', class: 'btn btn-light' %>
+                <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-light' %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to ' カート ', '#', class: 'btn btn-light' %>
+                <%= link_to ' カート ', cart_products_path, class: 'btn btn-light' %>
               </li>
               <li class="nav-item pl-4">
                 <%= button_to ' ログアウト ', customers_sign_out_path , class: 'btn btn-light', method: :delete %>
@@ -39,7 +39,7 @@
               <% else %>
 
               <li class="nav-item">
-                <%= link_to ' 商品一覧 ', '#', class: 'btn btn-light' %>
+                <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-light' %>
               </li>
               <li class="nav-item pl-4">
                 <%= link_to ' ログイン ', customers_sign_in_path, class: 'btn btn-light' %>
@@ -49,15 +49,16 @@
               </li>
               <% end %>
             </ul>
-          </nav>
-      </header>
-      
-      <!-- ボディ -->
-      <%= yield %>
+        </nav>
 
-      <!-- フッター -->
-      <footer id="footer">
-      </footer>
+      </div>
+    </header>
+
+    <div class="container">
+      <%= yield %>
     </div>
+    <!-- フッター -->
+    <footer id="footer">
+    </footer>
   </body>
 </html>
