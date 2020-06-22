@@ -14,31 +14,43 @@ class OrdersController < ApplicationController
     @ship = current_customer.ships.new
   end
 
-  def confirmation
+  def confirmation_new
     @order = current_customer.orders.new(order_params)
     @order_ship = Ship.find(params[:order][:ship][:id])
     @ship = current_customer.ships.new(postal_code: params[:order][:ship][:postal_code], address: params[:order][:ship][:address], name: params[:order][:ship][:name])
+    @cart_products = current_customer.cart_products
+    @order_product = current_customer.orders.new
   end
 
   def complete
   end
 
   def create
-    @order = current_customer.orders.new(order_params)
-    @order.save
-    @order_products = current_customer.order_products.all
-      @order_products.each do |order_product|
-        @order_products = @order.order_products.new
-        @order_products.order_id = order_product.order.id
-        @order_products.product_id = order_product.product.id
+    order = current_customer.orders.new(order_params)
+    order.fare = 800
+    total_price = 0
+    cart_products = current_customer.cart_products
+    cart_products.each do |cart_product|
+      product_quantity = cart_product.quantity
+      sub_total = product_quantity * cart_product.product.non_taxed_price
+      total_price += sub_total
+    end
+    aaa = total_price * 1.1
+    order.billing_total = aaa.floor + 800
+    order.order_status = 0
+    order.save
+    cart_products.each do |cart_product|
+      order_products = order.order_products.new
+      order_products.product_id = cart_product.product_id
+      order_products.number = cart_product.quantity
+      order_products.taxed_price = cart_product.product.non_taxed_price * 1.1
+      order_products.production_status = 0
+      order_products.save
+      cart_product.destroy
+    end
 
-        @order_products.number = 
-        @order_products.price = 
+    redirect_to orders_path
 
-        @order_products.quantity = order_product.quantity
-
-        @order_products.save 
-      end
   end
 
   private
@@ -50,4 +62,5 @@ class OrdersController < ApplicationController
   def ship_params
     params.require(:order).permit(ship: [:customer_id, :name, :postal_code, :address])
   end
+
 end
