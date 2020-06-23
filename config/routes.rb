@@ -53,7 +53,7 @@ Rails.application.routes.draw do
 
   # 注文
   resources :orders, only: [:index,:show,:new,:create] do
-    get :confirmation, on: :collection
+    post :confirmation, action: :confirmation_new, on: :new
     get :complete, on: :collection
   end
   namespace :admin do

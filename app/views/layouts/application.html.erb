@@ -25,7 +25,7 @@
                 <span>ようこそ、<%= current_customer.last_name %>さん!</span>
               </li>
               <li class="nav-item">
-                <%= link_to ' マイページ ', '#', class: 'btn btn-light' %>
+                <%= link_to ' マイページ ', customers_path, class: 'btn btn-light' %>
               </li>
               <li class="nav-item pl-4">
                 <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-light' %>
@@ -49,10 +49,12 @@
               </li>
               <% end %>
             </ul>
+
         </nav>
 
       </div>
     </header>
+
 
     <div class="container">
       <%= yield %>

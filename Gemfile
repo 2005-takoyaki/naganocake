@@ -62,6 +62,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'bootstrap'
+gem 'pry-rails'
 gem 'jquery-rails'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
@@ -71,3 +72,6 @@ gem 'kaminari', '~> 0.17.0'
 gem 'gimei'
 gem 'faker'
 gem 'pry-byebug'
+gem 'hirb'
+gem 'hirb-unicode'
+gem 'pry-rails'
