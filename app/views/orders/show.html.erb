@@ -5,6 +5,7 @@
 </div>
 
 <div class="row">
+	<!-- 注文情報テーブル -->
 	<div class="col-sm-6">
  		<span>注文情報</span>
 		<table class="table table-bordered">
@@ -25,26 +26,28 @@
 		</table>
 	</div>
 
+	<!-- 請求情報テーブル -->
 	<div class="col-sm-4">
 	 	<span>請求情報</span>
 		<table class="table table-bordered">
 			<tbody class="thead-light">
 				<tr>
 					<th>商品合計</th>
-					<td><%= (@order.billing_total - @order.fare) %></td>
+					<td><%= (@order.billing_total - @order.fare).floor.to_s(:delimited) %></td>
 				</tr>
 					<th>送料</th>
-					<td><%= @order.fare %></td>
+					<td><%= @order.fare.floor.to_s(:delimited) %></td>
 				</tr>
 				<tr>
 					<th>請求金額</th>
-					<td><%= @order.billing_total %></td>
+					<td><%= @order.billing_total.floor.to_s(:delimited) %></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
 
+<!-- 注文内容テーブル -->
 <div class="row">
 	<div class="col-sm-7">
 		<span>注文内容</span>
@@ -61,9 +64,9 @@
 				<% @order_products.each do |order_product| %>
 					<tr>
 						<td><%= order_product.product.name %></td>
-						<td><%= order_product.taxed_price %></td>
-						<td><%= order_product.number %></td>
-						<td><%= order_product.taxed_price * order_product.number%></td>
+						<td><%= order_product.taxed_price.floor.to_s(:delimited) %></td>
+						<td><%= order_product.number.floor.to_s(:delimited) %></td>
+						<td><%= (order_product.taxed_price * order_product.number).floor.to_s(:delimited) %></td>
 					</tr>
 				<% end %>
 			</tbody>

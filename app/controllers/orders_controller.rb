@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_customer!
+
   def index
-    @orders = Order.where(customer_id: current_customer.id)
+    @orders = Order.where(customer_id: current_customer.id) #一覧表示するためにorderモデルの情報を全て習得する。
     @order_products = OrderProduct.where(order_id: @orders)
   end
 
@@ -24,21 +26,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_customer.orders.new(order_params)
-    @order.save
-    @order_products = current_customer.order_products.all
-      @order_products.each do |order_product|
-        @order_products = @order.order_products.new
-        @order_products.order_id = order_product.order.id
-        @order_products.product_id = order_product.product.id
-
-        @order_products.number = 
-        @order_products.price = 
-
-        @order_products.quantity = order_product.quantity
-
-        @order_products.save 
-      end
   end
 
   private
@@ -50,4 +37,5 @@ class OrdersController < ApplicationController
   def ship_params
     params.require(:order).permit(ship: [:customer_id, :name, :postal_code, :address])
   end
+
 end
