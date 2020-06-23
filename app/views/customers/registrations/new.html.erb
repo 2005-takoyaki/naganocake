@@ -4,109 +4,117 @@
   </div>
 </div>
 
+<div>
   <!-- 新規会員登録フォーム -->
-<%= form_for(resource, as: resource_name, url: customers_path) do |f| %>
+  <%= form_for(resource, as: resource_name, url: customers_path) do |f| %>
 
   <%= render "customers/shared/error_messages", resource: resource %>
 
-  <div class="form-row">
-    <div class="form-group col-sm-3">
-      <p class="pt-2">名前</p>
+    <div class="form-row">
+      <div class="form-group col-sm-2">
+        <p>名前</p>
+      </div>
+      <div class="form-group col-sm-1 text-right">
+        <%= f.label :last_name, "(姓)" %>
+      </div>
+      <div class="form-group col-sm-2">
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+      </div>
+      <div class="form-group col-sm-1 text-right">
+        <%= f.label :first_name, "(名)" %>
+      </div>
+      <div class="form-group col-sm-3">
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+      </div>
     </div>
-    <div class="form-group col-sm-3">
-      <%= f.label :last_name, "(姓)" %>
-      <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-    </div>
-    <div class="form-group col-sm-3">
-      <%= f.label :first_name, "(名)" %>
-      <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-sm-3">
-      <p class="pt-2">フリガナ</p>
+    <div class="form-row">
+      <div class="form-group col-sm-2">
+        <p>フリガナ</p>
+      </div>
+      <div class="form-group col-sm-1 text-right">
+        <%= f.label :kana_last_name, "(セイ)" %>
+      </div>
+      <div class="form-group col-sm-2">
+        <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name" %>
+      </div>
+      <div class="form-group col-sm-1 text-right">
+        <%= f.label :kana_first_name, "(メイ)" %>
+      </div>
+      <div class="form-group col-sm-3">
+        <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name" %>
+      </div>
     </div>
-    <div class="form-group col-sm-3">
-      <%= f.label :kana_last_name, "(セイ)" %>
-      <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name" %>
-    </div>
-    <div class="form-group col-sm-3">
-      <%= f.label :kana_first_name, "(メイ)" %>
-      <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name" %>
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-sm-3">
-      <%= f.label :email, "メールアドレス" %>
+    <div class="form-row">
+      <div class="form-group col-sm-3">
+        <%= f.label :email, "メールアドレス" %>
+      </div>
+      <div class="form-group col-sm-3">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-sm-3">
-      <%= f.label :postal_code, "郵便番号" %>
-    </div>
-    <div class="form-group">
-      <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
-    </div>
+    <div class="form-row">
+      <div class="form-group col-sm-3">
+        <%= f.label :postal_code, "郵便番号" %>
+      </div>
+      <div class="form-group col-sm-3">
+        <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+      </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-sm-3">
         <%= f.label :address, "住所" %>
       </div>
-    <div class="form-group">
-      <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+      <div class="form-group col-sm-6">
+          <%= f.text_field :address, autofocus: true, autocomplete: "address", size: 55 %>
+      </div>
     </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-sm-3">
-      <%= f.label :phone_number, "電話番号(ハイフンなし)" %>
+    <div class="form-row">
+      <div class="form-group col-sm-3">
+        <%= f.label :phone_number, "電話番号(ハイフンなし)" %>
+      </div>
+      <div class="form-group col-sm-3">
+        <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-sm-3">
-      <%= f.label :password, "パスワード" %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %>文字以上)</em>
-        <% end %>
+    <div class="form-row">
+      <div class="form-group col-sm-3">
+        <%= f.label :password, "パスワード" %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %>文字以上)</em>
+          <% end %>
+      </div>
+      <div class="form-group col-sm-3">
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-sm-3">
-      <%= f.label :password_confirmation, "パスワード(確認用)" %>
+    <div class="form-row">
+      <div class="form-group col-sm-3">
+        <%= f.label :password_confirmation, "パスワード(確認用)" %>
+      </div>
+      <div class="form-group col-sm-3">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+
+    <div class="form-row">
+      <div class="form-group mx-auto w-25">
+        <%= f.submit('新規登録',class: 'btn btn-success btn-block')%>
+      </div>
     </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group mx-auto w-25">
-      <%= f.submit('新規登録',class: 'btn btn-success btn-block')%>
+  <% end %>
+
+  <div class="row pt-10">
+    <div class="col pl-5">
+      <h5><span>既に登録済みの方</span></h5>
+      <span class="col pl-5"><%= render "customers/shared/links" %> からログインしてください。</span>
     </div>
-  </div>
-
-<% end %>
-
-<div class="row pt-10">
-  <div class="col pl-5">
-    <h5><span>既に登録済みの方</span></h5>
-    <span class="col pl-5"><%= render "customers/shared/links" %> からログインしてください。</span>
   </div>
 </div>
-
-
