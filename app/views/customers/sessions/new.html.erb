@@ -2,7 +2,7 @@
   <div class="col-sm-10 offset-sm-1">
     <!-- ログインフォーム -->
     <div class="form-group">
-      <h5>会員の方はこちらからログイン</h5>
+      <h5><span>会員の方はこちらからログイン</span></h5>
       <%= form_for(resource, as: resource_name, url: customers_sign_in_path) do |f| %>
       <div class="row ml-5">
         <%= f.label :email, "メールアドレス", class: "col-sm-2" %>
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="col-sm-10 offset-sm-1 mt-3">
-    <h5>登録がお済みでない方</h5>
+    <h5><span>登録がお済みでない方</span></h5>
     <p class="ml-5"><%= render "customers/shared/links" %> から新規登録を行って下さい。</p>
   </div>
 </div>
