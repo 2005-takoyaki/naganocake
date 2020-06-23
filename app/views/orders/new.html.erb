@@ -1,57 +1,87 @@
-<div class="row my-4">
-  <div class="col pl-5">
-    <h5><span class="bg-info text-light">注文情報入力</span></h5>
+<div class="row">
+  <div class="col-sm">
+    <h5><span>注文情報入力</span></h5>
   </div>
 </div>
 
-<%= form_with model: @order,url: confirmation_new_order_path, local: true do |f| %>
-  <h3>支払い情報入力</h3>
-
-	<div class="radio-inline">
-    <%= f.radio_button :payment_method, 'クレジットカード', checked: "checked" %>
-    <%= f.label :クレジットカード, class: "job_type_label" %>
-	</div>
-	<div class="radio-inline">
-		<%= f.radio_button :payment_method, '銀行振り込み' %>
-	    <%= f.label :銀行振り込み, class: "job_type_label" %>
-	</div>
-
-  <h3>お届け先入力</h3>
-
-  <div>
-    <%= f.radio_button :key, 'my_address', checked: "checked" %>
-    <%= f.label :key, 'ご自身の住所' %><br>
-      <%= current_customer.postal_code + current_customer.address %><br>
-      <%= current_customer.last_name + current_customer.first_name %>
+<!-- 注文情報入力フォーム -->
+<%= form_with model: @order,url: confirmation_orders_path, local: true do |f| %>
+  <!-- 支払い情報入力欄 -->
+  <div class="row">
+    <div class="col-sm">
+      <h5>支払い情報入力</h5>
+      <div class="pl-5">
+        <div class="radio-inline">
+          <%= f.radio_button :payment_method, 'クレジットカード', checked: "checked" %>
+          <%= f.label :クレジットカード, class: "job_type_label" %>
+        </div>
+        <div class="radio-inline">
+          <%= f.radio_button :payment_method, '銀行振り込み' %>
+          <%= f.label :銀行振り込み, class: "job_type_label" %>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= f.radio_button :key, 'other_address' %>
-    <%= f.label :key, '登録済住所から選択' %><br>
-      <%= f.fields_for @ship do |i| %>
-        <%= i.collection_select :id, Ship.where(customer_id: current_customer.id), :id, :view_all_customer_date, class: "form-control" %>
-      <% end %>
+  <!-- お届け先入力欄 -->
+  <div class="form-row">
+    <div class="col-sm">
+      <h5>お届け先入力</h5>
+
+      <!-- ご自身の住所選択 -->
+      <div class="form-group pl-5">
+        <%= f.radio_button :key, 'my_address', checked: "checked" %>
+        <%= f.label :key, 'ご自身の住所' %><br>
+        <div class="pl-5">
+          <%= current_customer.postal_code + current_customer.address %><br>
+          <%= current_customer.last_name + current_customer.first_name %>
+        </div>
+      </div>
+
+      <!-- 登録先住所から選択 -->
+      <div class="form-group pl-5">
+        <%= f.radio_button :key, 'other_address' %>
+        <%= f.label :key, '登録済住所から選択' %><br>
+        <div class="pl-5">
+          <%= f.fields_for @ship do |i| %>
+            <%= i.collection_select :id, Ship.where(customer_id: current_customer.id), :id, :view_all_customer_date, class: "form-control" %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- 新しいお届け先から選択 -->
+      <div class="form-group pl-5">
+        <%= f.radio_button :key, 'new_address' %>
+        <%= f.label :key, '新しいお届け先' %><br>
+        <div class="pl-4">
+          <%= f.fields_for @ship do |i| %>
+            <table class="table table-borderless col-10">
+              <tr>
+                <td><%= i.label :postal_code, '郵便番号(ハイフンなし)' %></td>
+                <td><%= i.text_field :postal_code, size:30 %></td>
+              </tr>
+              <tr>
+                <td><%= i.label :address, "住所" %></td>
+                <td><%= i.text_field :address, size:60%></td>
+              </tr>
+              <tr>
+                <td><%= i.label :name, '宛名' %></td>
+                <td><%= i.text_field :name, size:30 %></td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- 確認画面に進む -->
+      <div class="row" style="text-align: center;">
+        <div class="col-md-4 offset-md-4">
+          <%= f.submit "確認画面に進む", class:"btn btn-primary" %>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <div>
-    <%= f.radio_button :key, 'new_address' %>
-    <%= f.label :key, '新しいお届け先' %><br>
-      <%= f.fields_for @ship do |i| %>
-        <div>
-          <%= i.label :postal_code, '郵便番号(ハイフンなし)' %>
-          <%= i.text_field :postal_code %>
-        </div>
-        <div>
-          <%= i.label :address, '住所' %>
-          <%= i.text_field :address %>
-        </div>
-        <div>
-          <%= i.label :name, '宛名' %>
-          <%= i.text_field :name %>
-        </div>
-      <% end %>
-  </div>
-
-
-  <%= f.submit '注文確認へ進む' %>
 <% end %>
+

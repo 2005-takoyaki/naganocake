@@ -6,34 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 # 顧客データを自動生成
-
-
-
-OrderProduct.create!(
-  order_id: 4,
-  product_id: 4,
-  number: 2,
-  taxed_price: 330,
-  production_status: 1
-)
-
-OrderProduct.create!(
-  order_id: 4,
-  product_id: 5,
-  number: 3,
-  taxed_price: 440,
-  production_status: 1
-)
-
-
-
-
-
-
-
-
-# 顧客を自動生成
 20.times do |n|
   gimei = Gimei.new
 
@@ -56,3 +30,4 @@ Admin.create!(
    email: 't@t',
    password: 'zaq',
 )
+
