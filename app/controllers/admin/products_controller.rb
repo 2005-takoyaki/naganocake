@@ -1,7 +1,8 @@
 class Admin::ProductsController < ApplicationController
 
   def index
-    @products = Product.includes(:genre).where(genres: {is_valid: "true"})
+    products = Product.includes(:genre).where(genres: {is_valid: "true"})
+    @products= Kaminari.paginate_array(products).page(params[:page])
   end
 
   def new

@@ -1,9 +1,10 @@
-<h2><span span style="background-color:#C0C0C0">商品一覧</span></h2>
+<h5><span>商品一覧</span></h5>
 
+<div class="float-sm-right">
 <%= link_to new_admin_product_path do %>
-  <%= embedded_svg("plus-circle.svg", class: "good-svg") %>
+  <%= embedded_svg("plus-circle.svg", class: "svg") %>
 <% end %>
-
+</div>
 
 <table class="table">
   <thead>
@@ -28,3 +29,8 @@
     <% end %>
   </tbody>
 </table>
+
+
+  <div>
+    <%= paginate @products %>
+  </div>
