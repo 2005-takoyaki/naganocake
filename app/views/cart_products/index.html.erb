@@ -9,7 +9,7 @@
 
 <div class="row mt-3">
   <!-- カートテーブル -->
-  <table class="table tabl-bordered">
+  <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
         <th>商品名</th>
@@ -22,9 +22,14 @@
     <tbody>
       <% @cart_products.each do |cart| %>
       <tr>
-        <td><%= cart.product&.name %></td>
-        <% tax_price = cart.product.non_taxed_price * 1.1 %>
-        <td><%= tax_price.floor.to_s(:delimited) %></td>
+        <td>
+          <%= attachment_image_tag cart.product, :image, :fill, 50, 50, format: 'jpeg'%>
+          <%= cart.product&.name %>
+        </td>
+        <td>
+          <% tax_price = cart.product.non_taxed_price * 1.1 %>
+          <%= tax_price.floor.to_s(:delimited) %>
+        </td>
         <td>
           <%= form_with model: cart, url: cart_product_path(cart.product.id), method: :patch, local: true do |f| %>
             <%= f.number_field :quantity, in: 1..10, step: 1, style: "width: 60px;" %>
