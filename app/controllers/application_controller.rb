@@ -1,14 +1,23 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+
+  include Admin::GenresHelper
   include Admin::AdminHelper
   include Admin::GenresHelper
   include Admin::CustomersHelper
+
+  include Admin::ProductsHelper
+
+	before_action :configure_permitted_parameters, if: :devise_controller?
+
+
   include Admin::OrdersHelper
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
   helper_method :current_cart
+
 
   protected
 
@@ -34,5 +43,7 @@ class ApplicationController < ActionController::Base
       redirect_to admin_sign_in_path
     end
   end
+
+  include Admin::ProductsHelper
 
 end
