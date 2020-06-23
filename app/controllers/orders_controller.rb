@@ -2,10 +2,6 @@ class OrdersController < ApplicationController
   def index
     @orders = current_customer.orders
     @order_products = current_customer.order_products
-    @orders.each do |order|
-      @my_product = order.products
-    end
-    @my_product
   end
 
   def show
