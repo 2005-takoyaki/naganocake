@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @orders = Order.where(customer_id: current_customer.id) #一覧表示するためにorderモデルの情報を全て習得する。
+    @orders = Order.where(customer_id: current_customer.id)
     @order_products = OrderProduct.where(order_id: @orders)
   end
 
