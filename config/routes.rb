@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/index'
   # デバイス
   devise_for :customers, skip: :all
   devise_scope :customer do
