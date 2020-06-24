@@ -1,12 +1,11 @@
 <div class="row">
-  <h2 class="col-12">注文履歴詳細</h2>
-
   <!-- 購入者欄 -->
-  <div class="col-12 purchaser_information">
+  <div class="col-sm-12 purchaser_information">
 
+    <h5 class="ml-5"><span>注文履歴詳細</span></h5>
     <div class="field row">
-      <p class="col-2 font-weight-bold">購入者</p>
-      <p class="col-10">
+      <p class="col-sm-2 font-weight-bold">購入者</p>
+      <p class="col-sm-10">
         <%= link_to admin_customer_path(@order.customer.id) do %>
           <%= @order.customer.last_name %> <%= @order.customer.first_name %>
         <% end %>
@@ -14,28 +13,28 @@
     </div>
 
     <div class="field row">
-      <p class="col-2 font-weight-bold">配送先</p>
-      <p class="col-10">〒<%= @order.postal_code.to_s.insert(3, "-") %> <%= @order.address %><br><%= @order.address_name %></p>
+      <p class="col-sm-2 font-weight-bold">配送先</p>
+      <p class="col-sm-10">〒<%= @order.postal_code.to_s.insert(3, "-") %> <%= @order.address %><br><%= @order.address_name %></p>
     </div>
 
     <div class="field row">
-      <p class="col-2 font-weight-bold">支払い方法</p>
-      <p class="col-10"><%= @order.payment_method %></p>
+      <p class="col-sm-2 font-weight-bold">支払い方法</p>
+      <p class="col-sm-10"><%= @order.payment_method %></p>
     </div>
 
     <div class="field row">
-      <p class="col-2 font-weight-bold">注文ステータス</p>
-      <div class="col-10">
-        <%= form_for @order, url: "/admin/orders/#{@order.id}", class: "form-group" do |f| %>
+      <p class="col-sm-2 font-weight-bold">注文ステータス</p>
+      <div class="col-sm-10 form-group">
+        <%= form_for @order, url: "/admin/orders/#{@order.id}" do |f| %>
           <%= f.select :order_status, Order.order_statuses.keys, class: "form-control order_status" %>
-          <%= f.submit value: "更新", class: "btn btn-primary" %>
+          <%= f.submit "更新", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>
   </div>
 
-  <!-- 商品の内訳 -->
-  <div class="col-9 order_information">
+    <!-- 商品の内訳 -->
+  <div class="col-sm-9 order_information mt-5">
     <table class="table table-hover">
       <thead class="thead-light">
         <tr>
@@ -58,12 +57,14 @@
           <!-- 小計 -->
           <td><%= (order_product.taxed_price * order_product.number).to_s(:delimited) %></td>
           <!-- 製作ステータス -->
-          <%= form_for order_product, url: "/admin/order_products/#{order_product.id}", class: "form-group" do |f| %>
-            <td>
-              <%= f.select :production_status, OrderProduct.production_statuses.keys, class: "form-control production_status" %>
-              <%= f.submit value: "更新", class: "btn btn-primary" %>
-            </td>
-          <% end %>
+          <div class="form-group">
+            <%= form_for order_product, url: "/admin/order_products/#{order_product.id}" do |f| %>
+              <td>
+                <%= f.select :production_status, OrderProduct.production_statuses.keys, class: "form-control production_status" %>
+                <%= f.submit "更新", class: "btn btn-primary" %>
+              </td>
+            <% end %>
+          </div>
         </tr>
         <% end %>
       </tbody>
@@ -71,21 +72,21 @@
   </div>
 
   <!-- 合計金額 -->
-  <div class="col-3 total_amount">
+  <div class="col-sm-3 total_amount align-self-end">
 
     <div class="field row">
-      <p class="col-6 font-weight-bold">商品合計</p>
-      <p class="col-6"><%= (@order.billing_total - @order.fare).to_s(:delimited) %>円</p>
+      <p class="col-sm-6 font-weight-bold">商品合計</p>
+      <p class="col-sm-6"><%= (@order.billing_total - @order.fare).to_s(:delimited) %>円</p>
     </div>
 
     <div class="field row">
-      <p class="col-6 font-weight-bold">送料</p>
-      <p class="col-6"><%= @order.fare.to_s(:delimited) %>円</p>
+      <p class="col-sm-6 font-weight-bold">送料</p>
+      <p class="col-sm-6"><%= @order.fare.to_s(:delimited) %>円</p>
     </div>
 
     <div class="field row">
-      <p class="col-6 font-weight-bold">請求金額合計</p>
-      <p class="col-6"><%= @order.billing_total.to_s(:delimited) %>円</p>
+      <p class="col-sm-6 font-weight-bold">請求金額合計</p>
+      <p class="col-sm-6 font-weight-bold"><%= @order.billing_total.to_s(:delimited) %>円</p>
     </div>
 
   </div>
