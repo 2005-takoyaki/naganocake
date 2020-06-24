@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'search/index'
   # デバイス
   devise_for :customers, skip: :all
   devise_scope :customer do
@@ -62,6 +61,8 @@ Rails.application.routes.draw do
     patch '/order_products/:id', to: 'orders#products_update'
   end
 
+  # 検索コーナー
+  resources :search, only: [:index]
 
 
 end
