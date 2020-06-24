@@ -24,9 +24,9 @@
 
     <div class="field row">
       <p class="col-sm-2 font-weight-bold">注文ステータス</p>
-      <div class="col-sm-10 form-group">
+      <div class="form-group form-inline">
         <%= form_for @order, url: "/admin/orders/#{@order.id}" do |f| %>
-          <%= f.select :order_status, Order.order_statuses.keys, class: "form-control order_status" %>
+          <%= f.select :order_status, Order.order_statuses.keys, {}, class: "form-control order_status" %>
           <%= f.submit "更新", class: "btn btn-primary" %>
         <% end %>
       </div>
@@ -59,8 +59,8 @@
           <!-- 製作ステータス -->
           <div class="form-group">
             <%= form_for order_product, url: "/admin/order_products/#{order_product.id}" do |f| %>
-              <td>
-                <%= f.select :production_status, OrderProduct.production_statuses.keys, class: "form-control production_status" %>
+              <td class="form-inline">
+                <%= f.select :production_status, OrderProduct.production_statuses.keys, {}, class: "form-control production_status" %>
                 <%= f.submit "更新", class: "btn btn-primary" %>
               </td>
             <% end %>
