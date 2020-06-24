@@ -1,5 +1,7 @@
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
+ @import 'font-awesome-sprockets';
+@import 'font-awesome';
 
  * {
   background-color: #F3FFD8;
@@ -55,4 +57,15 @@ h5 {
     }
   }
 
+}
+
+#search-label {
+  cursor: pointer;
+  font-size: 16px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#search-button {
 }

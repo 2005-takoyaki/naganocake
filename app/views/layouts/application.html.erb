@@ -4,7 +4,6 @@
     <title>Naganocake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <script src="https://kit.fontawesome.com/9ddd9b0d94.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -50,20 +49,17 @@
               <% end %>
             </ul>
               <%= form_with url: search_index_path, scope: :search, method: :get, local: true do |f| %>
-                <div class="input-group">
-                  <%= f.text_field :content, placeholder: 'キーワード検索', class: "form-control" %>
-                  <span class="input-group-btn">
-                    <%= f.submit '検索', class: "fas fa-search pr-1" %>
-
-                  </span>
-                </div>
+                  <%= f.text_field :content, placeholder: 'キーワード検索', style: 'border-radius: 5%;' do %>
+                    <%= icon 'fa', 'search' %>
+                  <% end %>
+                  <%= f.button class: "btn btn-default" do %>
+                   <%= icon 'fa', 'search' %>
+                  <% end %>
               <% end %>
         </nav>
 
       </div>
     </header>
-    <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></span>
-    <i class="fab fa-facebook-square"></i>
 
     <div class="container-fluid">
       <div class="container">

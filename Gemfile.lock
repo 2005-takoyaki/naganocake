@@ -103,6 +103,8 @@ GEM
     faker (2.12.0)
       i18n (>= 1.6, < 2)
     ffi (1.13.1)
+    font-awesome-sass (5.4.1)
+      sassc (>= 1.11)
     gimei (0.5.0)
       romaji
     globalid (0.4.2)
@@ -294,6 +296,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   faker
+  font-awesome-sass (~> 5.4.1)
   gimei
   hirb
   hirb-unicode
