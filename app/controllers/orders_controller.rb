@@ -18,10 +18,19 @@ class OrdersController < ApplicationController
 
   def confirmation_new
     @order = current_customer.orders.new(order_params)
+    @order.fare = 800
     @order_ship = Ship.find(params[:order][:ship][:id])
     @ship = current_customer.ships.new(postal_code: params[:order][:ship][:postal_code], address: params[:order][:ship][:address], name: params[:order][:ship][:name])
     @cart_products = current_customer.cart_products
     @order_product = current_customer.orders.new
+    total_price = 0
+    @cart_products.each do |cart_product|
+      product_quantity = cart_product.quantity
+      sub_total = product_quantity * cart_product.product.non_taxed_price
+      total_price += sub_total
+    end
+    taxed_total_price = total_price * 1.1
+    @order.billing_total = taxed_total_price.floor + 800
   end
 
   def complete
@@ -51,7 +60,7 @@ class OrdersController < ApplicationController
       cart_product.destroy
     end
 
-    redirect_to orders_path
+    redirect_to complete_orders_path
 
   end
 
