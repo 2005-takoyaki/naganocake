@@ -31,7 +31,7 @@
           </td>
           <td>
             <%= form_with model: cart, url: cart_product_path(cart.product.id), method: :patch, local: true do |f| %>
-              <%= f.number_field :quantity, in: 1..10, step: 1, style: "width: 60px;" %>
+              <%= f.number_field :quantity, min:1, step: 1, style: "width: 60px;" %>
               <%= f.submit '変更', class: "btn btn-primary btn-sm" %>
             <% end %>
           </td>
@@ -92,7 +92,7 @@
     </div>
     <%= f.hidden_field :postal_code, :value => current_customer.postal_code %>
     <%= f.hidden_field :address, :value => current_customer.address %>
-    <%= f.hidden_field :address_name, :value => current_customer.last_name %>
+    <%= f.hidden_field :address_name, :value => current_customer.last_name + current_customer.first_name %>
       
   <!-- 登録済みの住所に送る -->
   <% elsif params[:order][:key] == 'other_address' %>
