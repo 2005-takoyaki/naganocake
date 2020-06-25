@@ -1,8 +1,17 @@
 ja:
-  views:
-    pagenation:
-      first:
-      last:
-      previous:
-      next:
-      turncate:
+  activerecord:
+    models:
+      genre: ジャンル
+      product: 商品
+    attributes:
+      genre:
+        genre_id: ジャンル
+        genre_name: ジャンル
+      product:
+        image: 商品画像
+        name: 商品名
+        introduction: 商品説明
+        non_taxed_price: 商品の値段
+        has_sold: 販売ステータス
+        genre_name: ジャンル
+        genre_id: ジャンル

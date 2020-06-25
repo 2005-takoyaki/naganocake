@@ -7,9 +7,9 @@ class Customer < ApplicationRecord
   #新規登録時のバリデーション
   validates :kana_last_name, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
   validates :kana_first_name, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
-  validates :postal_code, presence: true
+  validates :postal_code, presence: true, format: { with: /\A\d{7}\z/ }
   validates :address, presence: true
-  validates :phone_number, presence: true
+  validates :phone_number, presence: true, format: {with: /\A\d{10,11}\z/}
 
 
   has_many :ships, dependent: :destroy

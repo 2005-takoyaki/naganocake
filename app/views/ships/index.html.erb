@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col-sm">
     <h5><span>配送先登録 / 一覧</span></h5>
-
+     <%= render 'layouts/error_messages', model: @ship_new %>
+     
     <!-- 配送先新規登録 -->
     <div class="form-group ships-form-group">
       <%= form_for @ship_new do |f| %>
@@ -19,7 +20,7 @@
         <div class="field form-inline">
           <%= f.label :name, "宛名", class: "col-3 col-form-label" %>
           <%= f.text_field :name, class: "form ship_name form-control"  %>
-          <%= f.submit value: "登録する", class: "btn btn-success float-right form-control" %>
+          <%= f.submit "登録する", class: "btn btn-success float-right form-control" %>
         </div>
 
       <% end %>

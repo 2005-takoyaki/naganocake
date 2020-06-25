@@ -18,7 +18,8 @@
 
 * {
   background-color: #F3FFD8;
-  color: #00295a;
+  font-family: serif;
+  color: #223a70
  }
 
 a {
@@ -30,13 +31,16 @@ a {
 }
 
 h5 span {
-  // background-color: #EEEEEE;
-  padding: 0 0.8rem 0.3rem;
-  border-bottom: 1px solid;
+  text-decoration: underline;
+  padding: 0 1.8rem;
 }
 
 h5 {
-  margin: 50px 0 30px 0;
+  padding: 50px 0 30px 0;
+}
+
+#clear_text {
+  margin: initial;
 }
 
 .ships-form-group {
@@ -75,8 +79,8 @@ h5 {
       line-height: 25px;
     }
   }
-
   .btn {
     margin: 0 0.5rem;
   }
 }
+

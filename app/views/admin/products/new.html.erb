@@ -1,59 +1,93 @@
 <h5><span>商品新規登録</span></h5>
 
-<%= form_for @product, url: admin_products_path do |f| %>
+
+<%= form_for(@product, url: admin_products_path, html: {class: "form-horizontal"}) do |f| %>
+
+
+
 
 <% if @product.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
+  <div id="error_explanation" class="alert">
+  	<h2><%= pluralize(@product.errors.count, "個") %> のエラーがあります:</h2>
     <ul>
-      <% @product.errors.full_messages.each do |message| %>
+      <% @error.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
 
+
 <div class="container">
-<div class="row">
-	<div class="col-sm-6">
-	<%= attachment_image_tag @product, :image, :fill, 100, 100, format: 'jpeg', fallback: "サンプル画像.jpg" %>
-	<div class="form-group">
+<div class="row mt-5">
+	<div class="col-sm-4">
+	<%= attachment_image_tag @product, :image, :fill, 100, 100, format: 'jpeg', class: "btn rounded-pill", fallback: "サンプル画像.jpg" %>
+	<div class =" mt-4">
 	<%= f.attachment_field :image %>
-</div>
-</div>
-
-<div class="col-sm-5">
-<div class="form-group">
-	<%= f.label :商品名 %>
-	<%= f.text_field :name, :size=>"25x10" %>
+	</div>
 </div>
 
-<div class="form-group d-flex align-items-start">
-	<%= f.label :商品説明 %>
-	<%= f.text_area :introduction, :size=>"25x6" %>
-</div>
+<div class="col-sm-6 d-flex flex-column justify-content-start">
 
-
-<div class="form-group">
-	<%= f.label :ジャンル %>
-	<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, {prompt: "-- 選択してください --"}, {class: "btn btn-primary"} %>
+<div class="form-group row">
+	<label class="col-sm-4 col-form-label">
+		<%= f.label :商品名 %>
+	</label>
+	<div class="col-sm-8">
+		<%= f.text_field :name, class: "form-control" %>
+	</div>
 </div>
 
 
-<div class="form-group">
-	<%= f.label :税抜価格 %>
-	<%= f.text_field :non_taxed_price, class: "non_taxed_price" %>
-	円
+<div class="form-group form-inline mt-2">
+	<label class="col-sm-4">
+		<%= f.label :商品説明 %>
+	</label>
+	<div class="col-sm-8">
+		<%= f.text_area :introduction, class: "form-control col-sm-8" %>
+	</div>
 </div>
 
-<div class="form-group">
-	<%= f.label :販売ステータス %>
-	<%= f.select :has_sold, {'販売中': true, '販売停止中': false}, { prompt: "-- 選択してください --"}, { class: "btn btn-primary" } %>
+
+<div class="form-group form-inline mt-2">
+	<label class="col-sm-4">
+		<%= f.label :ジャンル %>
+	</label>
+	<div class="col-sm-8">
+		<% if @error_class.nil? %>
+		<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, {prompt: "-- 選択してください --"}, {class: "custom-select col-sm-9"} %>
+		<% else %>
+		<div class="field_with_errors">
+		<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, {prompt: "-- 選択してください --"}, {class: "custom-select col-sm-9"} %>
+		</div>
+		<% end %>
+	</div>
+</div>
+
+
+<div class="form-group form-inline mt-2">
+	<label class="col-sm-4">
+		<%= f.label :税抜価格 %>
+	</label>
+	<div class="col-sm-8">
+		<%= f.text_field :non_taxed_price, class: "form-control" %>
+		円
+	</div>
+</div>
+
+<div class="form-group form-inline mt-2">
+	<label class="col-sm-4">
+		<%= f.label :販売ステータス %>
+	</label>
+	<div class="col-sm-8">
+		<%= f.select :has_sold, {'販売中': true, '販売停止中': false}, { prompt: "-- 選択してください --"}, { class: "custom-select col-sm-9"} %>
+	</div>
 </div>
 </div>
 
-<div class="col-sm-1 align-self-end">
+<div class="col-sm-1 align-self-end mt-2">
 <div class="actions">
-	<%= f.submit "新規登録", class: "btn btn-primary btn-lg" %>
+	<%= f.submit "新規登録", class: "btn btn-outline-light bg-dark rounded-pill btn-lg" %>
 </div>
 </div>
 </div>
