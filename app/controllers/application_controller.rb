@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   include Admin::AdminHelper
   include Admin::GenresHelper
   include Admin::CustomersHelper
-
   include Admin::ProductsHelper
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
@@ -44,6 +43,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  include Admin::ProductsHelper
+  #ログイン管理者を弾く
+  def prohibition_admin
+    if current_admin
+      redirect_to admin_path
+    end
+  end
+
 
 end

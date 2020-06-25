@@ -1,5 +1,6 @@
 class Admin::AdminController < ApplicationController
   before_action :authenticate_admin, only: [:index, :destroy]
+  before_action :prohibition_admin, only: [:new]
 
   def new
   end
