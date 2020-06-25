@@ -64,7 +64,7 @@ h5 {
 }
 
 .ships-table {
-  width: 700px;
+  // width: 700px;
 
   .blank {
     width: 240px;
@@ -74,5 +74,9 @@ h5 {
       height: 25px;
       line-height: 25px;
     }
+  }
+
+  .btn {
+    margin: 0 0.5rem;
   }
 }

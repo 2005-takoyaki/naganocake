@@ -6,17 +6,17 @@
     <div class="form-group ships-form-group">
       <%= form_for @ship_new do |f| %>
 
-        <div class="field row">
+        <div class="field form-inline">
           <%= f.label :postal_code, "郵便番号(ハイフンなし)" , class: "col-3 col-form-label" %>
           <%= f.text_field :postal_code, class: "form ship_postal_code form-control"  %>
         </div>
 
-        <div class="field row">
+        <div class="field form-inline">
           <%= f.label :address, "住所", class: "col-3 col-form-label" %>
           <%= f.text_field :address, class: "form ship_address form-control" %>
         </div>
 
-        <div class="field row">
+        <div class="field form-inline">
           <%= f.label :name, "宛名", class: "col-3 col-form-label" %>
           <%= f.text_field :name, class: "form ship_name form-control"  %>
           <%= f.submit value: "登録する", class: "btn btn-success float-right form-control" %>
@@ -33,10 +33,10 @@
 
 <!-- 配送先一覧 -->
 <div class="row">
-  <div class="col-sm">
-    <table class="table table-bordered table-hover ships-table">
-      <thead class="thead-light">
-        <tr>
+  <div class="col-sm-9">
+    <table class="table table-bordered ships-table">
+      <thead>
+        <tr class="table-info">
           <th class="postal-code">郵便番号</th>
           <th class="address">住所</th>
           <th class="name">宛名</th>
@@ -47,10 +47,10 @@
       <tbody>
         <% @ships.each do |ship| %>
         <tr>
-          <td><%= ship.postal_code %></td>
-          <td><%= ship.address %></td>
-          <td><%= ship.name %></td>
-          <td>
+          <td class="table-light"><%= ship.postal_code %></td>
+          <td class="table-light"><%= ship.address %></td>
+          <td class="table-light"><%= ship.name %></td>
+          <td class="table-light text-center">
             <%= link_to "編集する", edit_ship_path(ship), class: "btn btn-primary btn-sm" %>
             <%= link_to "削除する", ship_path(ship), class: "btn btn-danger btn-sm", method: :delete %>
           </td>
