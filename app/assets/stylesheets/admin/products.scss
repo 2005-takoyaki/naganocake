@@ -4,24 +4,18 @@
 
 @import "bootstrap";
 
-label{
-  color: #808080;
-}
-div{
-  color: #808080;
-}
-.alert {
-    color: #721c24;
-}
-
 .field_with_errors {
   display: contents;
-  input, textarea, select, collection_select,attachment {
+  input, textarea, select, collection_select {
     @extend .is-invalid;
   }
 }
 
-.genre_error{
-border-color: #dc3545;
-padding-right: calc(0.75em + 2.3125rem);
+.help-block{
+color: red;
+display: block;
+}
+
+li,h4 {
+    color: #721c24;
 }
