@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-sm">
+    <!-- 顧客と商品がヒット -->
+    <% if @products.present? && @customers.present? %>
+
+      <!-- 商品 -->
+      <%= render 'product', products: @products %>
+
+      <!-- 顧客 -->
+      <%= render 'customer', customers: @customers %>
+
+    <!-- 商品のみヒット -->
+    <% elsif @products.present? && @customers.blank? %>
+      <!-- 商品 -->
+      <%= render 'product', products: @products %>
+
+    <!-- 顧客のみヒット -->
+    <% elsif @products.blank? && @customers.present? %>
+
+      <!-- 顧客 -->
+      <%= render 'customer', customers: @customers %>
+
+    <!-- どちらもヒットせず -->
+    <% else @products.blank? && @customers.blank? %>
+      <h4>検索結果が見つかりませんでした</h4>
+
+    <% end %>
+
+  </div>
+</div>

@@ -76,6 +76,6 @@ gem 'hirb'
 gem 'hirb-unicode'
 gem 'pry-rails'
 
-# 日本語するためのGemです
 gem 'rails-i18n'
 
+gem 'dotenv-rails'
