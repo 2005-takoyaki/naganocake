@@ -4,6 +4,8 @@
   </div>
 </div>
 
+<%= render 'layouts/error_messages', model: @ship %>
+
 <!-- 注文情報入力フォーム -->
 <%= form_with model: @order,url: confirmation_new_order_path, local: true do |f| %>
   <!-- 支払い情報入力欄 -->
