@@ -52,20 +52,20 @@ class OrdersController < ApplicationController
     order.billing_total = taxed_total_price.floor + 800
     order.order_status = 0
 
-       order.save
-        cart_products.each do |cart_product|
-          order_products = order.order_products.new
-          order_products.product_id = cart_product.product_id
-          order_products.number = cart_product.quantity
-          order_products.taxed_price = cart_product.product.non_taxed_price * 1.1
-          order_products.production_status = 0
-          order_products.save
-          cart_product.destroy
-        end
+    order.save
+      cart_products.each do |cart_product|
+        order_products = order.order_products.new
+        order_products.product_id = cart_product.product_id
+        order_products.number = cart_product.quantity
+        order_products.taxed_price = cart_product.product.non_taxed_price * 1.1
+        order_products.production_status = 0
+        order_products.save
+        cart_product.destroy
+      end
 
-        redirect_to complete_orders_path
+    redirect_to complete_orders_path
 
-    end
+  end
 
   private
 
