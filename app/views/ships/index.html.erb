@@ -1,25 +1,25 @@
 <div class="row">
-  <div class="col">
-    <h2>配送先登録 / 一覧</h2>
+  <div class="col-sm">
+    <h5><span>配送先登録 / 一覧</span></h5>
 
     <!-- 配送先新規登録 -->
-    <div class="form-group">
+    <div class="form-group ships-form-group">
       <%= form_for @ship_new do |f| %>
 
         <div class="field row">
-          <%= f.label :"郵便番号(ハイフンなし)", class: "col-3 col-form-label" %>
-          <%= f.text_field :postal_code, class: "form ship_postal_code", size: 20  %>
+          <%= f.label :postal_code, "郵便番号(ハイフンなし)" , class: "col-3 col-form-label" %>
+          <%= f.text_field :postal_code, class: "form ship_postal_code form-control"  %>
         </div>
 
         <div class="field row">
-          <%= f.label :住所, class: "col-3 col-form-label" %>
-          <%= f.text_field :address, class: "form ship_address", size: 40 %>
+          <%= f.label :address, "住所", class: "col-3 col-form-label" %>
+          <%= f.text_field :address, class: "form ship_address form-control" %>
         </div>
 
         <div class="field row">
-          <%= f.label :宛名, class: "col-3 col-form-label" %>
-          <%= f.text_field :name, class: "form ship_name", size: 20  %>
-          <%= f.submit value: "登録する", class: "btn btn-success float-right" %>
+          <%= f.label :name, "宛名", class: "col-3 col-form-label" %>
+          <%= f.text_field :name, class: "form ship_name form-control"  %>
+          <%= f.submit value: "登録する", class: "btn btn-success float-right form-control" %>
         </div>
 
       <% end %>
@@ -27,16 +27,20 @@
   </div>
 </div>
 
+<div class="space-box">
+
+</div>
+
 <!-- 配送先一覧 -->
 <div class="row">
-  <div class="col">
-    <table class="table table-bordered table-hover">
+  <div class="col-sm">
+    <table class="table table-bordered table-hover ships-table">
       <thead class="thead-light">
         <tr>
-          <th>郵便番号</th>
-          <th>住所</th>
-          <th>宛名</th>
-          <th></th>
+          <th class="postal-code">郵便番号</th>
+          <th class="address">住所</th>
+          <th class="name">宛名</th>
+          <th class="blank"></th>
         </tr>
       </thead>
 
@@ -47,8 +51,8 @@
           <td><%= ship.address %></td>
           <td><%= ship.name %></td>
           <td>
-            <%= link_to "編集する", edit_ship_path(ship), class: "btn btn-primary float-left" %>
-            <%= link_to "削除する", ship_path(ship), class: "btn btn-danger float-right", method: :delete %>
+            <%= link_to "編集する", edit_ship_path(ship), class: "btn btn-primary btn-sm" %>
+            <%= link_to "削除する", ship_path(ship), class: "btn btn-danger btn-sm", method: :delete %>
           </td>
         </tr>
         <% end %>
