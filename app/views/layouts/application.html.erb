@@ -26,27 +26,27 @@
                 <span>ようこそ、<%= current_customer.last_name %>さん!</span>
               </li>
               <li class="nav-item">
-                <%= link_to ' マイページ ', customers_path, class: 'btn btn-light' %>
+                <%= link_to ' マイページ ', customers_path, class: 'btn btn-info' %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-light' %>
+                <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-info' %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to ' カート ', cart_products_path, class: 'btn btn-light' %>
+                <%= link_to ' カート ', cart_products_path, class: 'btn btn-info' %>
               </li>
               <li class="nav-item pl-4">
-                <%= button_to ' ログアウト ', customers_sign_out_path , class: 'btn btn-light', method: :delete %>
+                <%= button_to ' ログアウト ', customers_sign_out_path , class: 'btn btn-info', method: :delete %>
               </li>
               <% else %>
 
               <li class="nav-item">
-                <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-light' %>
+                <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-info' %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to ' ログイン ', customers_sign_in_path, class: 'btn btn-light' %>
+                <%= link_to ' ログイン ', customers_sign_in_path, class: 'btn btn-info' %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to ' 新規登録 ', customers_sign_up_path, class: 'btn btn-light' %>
+                <%= link_to ' 新規登録 ', customers_sign_up_path, class: 'btn btn-info' %>
               </li>
               <% end %>
             </ul>
