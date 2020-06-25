@@ -1,2 +1,29 @@
-<h1>Search#index</h1>
-<p>Find me in app/views/search/index.html.erb</p>
+<div class="row">
+  <div class="col-sm">
+    <% if @products.present? && @customers.present? %>
+      <% binding.pry %>
+      <div class="search-products">
+        <% @products.each do |product| %>
+          <%= product.name %>
+        <% end %>
+      </div>
+      <div class="search-customers">
+        <% @customers.each do |customer| %>
+          <%= customer.last_name + customer.first_name %>
+        <% end %>
+      </div>
+    <% elsif @products.present? && @customers.blank? %>
+      <div class="search-products">
+        <% @products.each do |product| %>
+          <%= product.name %>
+        <% end %>
+      </div>
+    <% elsif @products.blank? && @customers.present? %>
+      <div class="search-customers">
+        <% @customers.each do |customer| %>
+          <%= customer.last_name + customer.first_name %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
