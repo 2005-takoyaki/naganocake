@@ -61,6 +61,11 @@ Rails.application.routes.draw do
     patch '/order_products/:id', to: 'orders#products_update'
   end
 
+  # 検索コーナー
+  namespace :admin do
+    get 'search/index', as: 'search'
+  end
+
 
 
 end
