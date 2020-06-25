@@ -1,11 +1,16 @@
 <h5><span>商品新規登録</span></h5>
 
-<%= form_for @product, url: admin_products_path do |f| %>
+
+<%= form_for(@product, url: admin_products_path, html: {class: "form-horizontal"}) do |f| %>
+
+
+
 
 <% if @product.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
+  <div id="error_explanation" class="alert">
+  	<h2><%= pluralize(@product.errors.count, "個") %> のエラーがあります:</h2>
     <ul>
-      <% @product.errors.full_messages.each do |message| %>
+      <% @error.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
@@ -24,12 +29,12 @@
 
 <div class="col-sm-6 d-flex flex-column justify-content-start">
 
-<div class="form-group form-inline">
-	<label class="col-sm-4">
+<div class="form-group row">
+	<label class="col-sm-4 col-form-label">
 		<%= f.label :商品名 %>
 	</label>
 	<div class="col-sm-8">
-		<%= f.text_field :name, class: "col-sm-9" %>
+		<%= f.text_field :name, class: "form-control" %>
 	</div>
 </div>
 
@@ -39,7 +44,7 @@
 		<%= f.label :商品説明 %>
 	</label>
 	<div class="col-sm-8">
-		<%= f.text_area :introduction, class: "col-sm-9" %>
+		<%= f.text_area :introduction, class: "form-control col-sm-8" %>
 	</div>
 </div>
 
@@ -49,7 +54,13 @@
 		<%= f.label :ジャンル %>
 	</label>
 	<div class="col-sm-8">
-		<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, {prompt: "-- 選択してください --"}, {class: "page-link.text-dark.d-inline-block col-sm-9"} %>
+		<% if @error_class.nil? %>
+		<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, {prompt: "-- 選択してください --"}, {class: "custom-select col-sm-9"} %>
+		<% else %>
+		<div class="field_with_errors">
+		<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, {prompt: "-- 選択してください --"}, {class: "custom-select col-sm-9"} %>
+		</div>
+		<% end %>
 	</div>
 </div>
 
@@ -59,7 +70,7 @@
 		<%= f.label :税抜価格 %>
 	</label>
 	<div class="col-sm-8">
-		<%= f.text_field :non_taxed_price, :size=>"26x10" %>
+		<%= f.text_field :non_taxed_price, class: "form-control" %>
 		円
 	</div>
 </div>
@@ -69,14 +80,14 @@
 		<%= f.label :販売ステータス %>
 	</label>
 	<div class="col-sm-8">
-		<%= f.select :has_sold, {'販売中': true, '販売停止中': false}, { prompt: "-- 選択してください --"}, { class: "page-link.text-dark.d-inline-block col-sm-9"} %>
+		<%= f.select :has_sold, {'販売中': true, '販売停止中': false}, { prompt: "-- 選択してください --"}, { class: "custom-select col-sm-9"} %>
 	</div>
 </div>
 </div>
 
 <div class="col-sm-1 align-self-end mt-2">
 <div class="actions">
-	<%= f.submit "新規登録", class: "btn btn-outline-success bg-warning rounded-pill btn-lg" %>
+	<%= f.submit "新規登録", class: "btn btn-outline-light bg-dark rounded-pill btn-lg" %>
 </div>
 </div>
 </div>

@@ -25,7 +25,7 @@
                 <span>ようこそ、<%= current_customer.last_name %>さん!</span>
               </li>
               <li class="nav-item">
-                <%= link_to ' マイページ ', customers_path, class: 'btn btn-light' %>
+                <%= link_to ' マイページ ', customers_path, class: 'btn btn-outline-successy bg-info' %>
               </li>
               <li class="nav-item pl-4">
                 <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-light' %>
@@ -39,7 +39,7 @@
 
               <% elsif current_admin %>
               <li class="nav-item">
-                <%= link_to ' 商品一覧 ', admin_products_path, class: 'btn btn-light' %>
+                <%= link_to ' 商品一覧 ', admin_products_path, class: 'btn btn-outline-light bg-info' %>
               </li>
               <li class="nav-item pl-4">
                 <%= link_to ' 会員一覧 ', admin_customers_path, class: 'btn btn-light' %>
