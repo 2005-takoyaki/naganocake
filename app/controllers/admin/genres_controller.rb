@@ -1,5 +1,6 @@
 class Admin::GenresController < ApplicationController
 #before_action :login_required
+  before_action :authenticate_admin
 
   def index
   	@genres = Genre.all #一覧表示するためにGenreモデルの情報を全て習得する。
