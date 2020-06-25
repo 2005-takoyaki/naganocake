@@ -43,6 +43,7 @@
           <th>数量</th>
           <th>小計</th>
           <th>製作ステータス</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -58,12 +59,14 @@
           <td><%= (order_product.taxed_price * order_product.number).to_s(:delimited) %></td>
           <!-- 製作ステータス -->
           <div class="form-group">
-            <%= form_for order_product, url: "/admin/order_products/#{order_product.id}" do |f| %>
-              <td class="form-inline">
+            <td>
+              <%= form_for order_product, url: "/admin/order_products/#{order_product.id}" do |f| %>
                 <%= f.select :production_status, OrderProduct.production_statuses.keys, {}, class: "form-control production_status" %>
+            </td>
+            <td>
                 <%= f.submit "更新", class: "btn btn-primary" %>
-              </td>
-            <% end %>
+              <% end %>
+            </td>
           </div>
         </tr>
         <% end %>
