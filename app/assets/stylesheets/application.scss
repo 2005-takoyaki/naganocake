@@ -16,17 +16,23 @@
 
  @import "bootstrap";
 
- * {
+* {
   background-color: #F3FFD8;
+  color: #00295a;
  }
 
+a {
+  color: #00295a;
+  border-bottom: 1px solid;
+}
 .btn {
   margin-left: 5px;
 }
 
 h5 span {
-  background-color: #EEEEEE;
-  padding: 0 1.8rem;
+  // background-color: #EEEEEE;
+  padding: 0 0.8rem 0.3rem;
+  border-bottom: 1px solid;
 }
 
 h5 {
@@ -69,5 +75,4 @@ h5 {
       line-height: 25px;
     }
   }
-
 }
