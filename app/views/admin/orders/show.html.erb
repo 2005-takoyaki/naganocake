@@ -36,18 +36,19 @@
     <!-- 商品の内訳 -->
   <div class="col-sm-9 order_information mt-5">
     <table class="table table-hover">
-      <thead class="thead-light">
-        <tr>
+      <thead>
+        <tr class="table-info">
           <th>商品名</th>
           <th>単価（税込）</th>
           <th>数量</th>
           <th>小計</th>
           <th>製作ステータス</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <% @order.order_products.each do |order_product| %>
-        <tr>
+        <tr class="table-light">
           <!-- 商品名 -->
           <td><%= order_product.product.name %></td>
           <!-- 単価（税込） -->
@@ -58,12 +59,14 @@
           <td><%= (order_product.taxed_price * order_product.number).to_s(:delimited) %></td>
           <!-- 製作ステータス -->
           <div class="form-group">
-            <%= form_for order_product, url: "/admin/order_products/#{order_product.id}" do |f| %>
-              <td class="form-inline">
+            <td>
+              <%= form_for order_product, url: "/admin/order_products/#{order_product.id}" do |f| %>
                 <%= f.select :production_status, OrderProduct.production_statuses.keys, {}, class: "form-control production_status" %>
+            </td>
+            <td>
                 <%= f.submit "更新", class: "btn btn-primary" %>
-              </td>
-            <% end %>
+              <% end %>
+            </td>
           </div>
         </tr>
         <% end %>
