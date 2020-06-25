@@ -1,32 +1,52 @@
 <div class="row">
-		<div class="col-3">
-			<table class ="table">
-				<tr>
-					<th><span>ジャンル検索</span></th>
-					<td>
-						<% @genres.each do |genre| %>
-						<%= link_to  product_path(genre.id) do %>
-						<%= @products.name %>
-						<% end%>
-					</td>
-						<% end %>
+	<div class="col-2 sm-2 mt-4">
+		<table border="1">
+    		<thead>
+        		<tr valign="middle">
+        		<th width="180" height="20">
+					<strong>ジャンル検索</strong>
+				</th>
 				</tr>
-			</table>
-		</div>
+			</thead>
+		</table>
+		<table frame="box">
+			<tbody>
+				<% @genres.each do |genre| %>
+				<tr valign="top">
+					<td width="180" height="60">
+						<%= link_to  products_path(genre_id: genre.id) do %>
+						<%= genre.genre_name %>
+						<% end%>
+				<% end %>
+					</td>
+				</tr>
+    		</tbody>
+  		</table>
+  	</div>
 
-		<div class="col-8">
-		<span>
-		<h2>商品一覧</h2>
-		</span>
-		<h3>全<%= @products_cnt %>件</h3>
-			<div class ="row">
-				<div class ="col-2">
-					<% @products.each do |product| %>
-						<%= attachment_image_tag product, :image, :fill, 100, 100, format: 'jpeg'%><br>
-						<p><%= link_to product.name, product_path(product) %></p><br>
-						<p>¥<%= product.non_taxed_price %></p>
-					<% end %>
+	<div class="col-10 sm-10">
+		<ul class="list-inline">
+			<li class="list-inline-item">
+				<h3><strong>商品一覧</h3></strong>
+			</li>
+			<li class="list-inline-item">
+				<h5>(全<%= @products.total_count %>件)</h5>
+			</li>
+		</ul>
+		<div class="row">
+			<% @products.each do |product| %>
+			<div class="indexnewbox">
+  				<div class="list p-2 my-2">
+					<%= attachment_image_tag product, :image, :fill, 200, 100, format: 'jpeg'%><br>
+					<%= link_to product.name, product_path(product) %><br>
+					¥<%= product.non_taxed_price %>
 				</div>
 			</div>
+			<% end %>
 		</div>
+	</div>
+</div>
+
+<div>
+	<%= paginate @products %>
 </div>
