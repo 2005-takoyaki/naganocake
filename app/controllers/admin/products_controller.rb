@@ -25,7 +25,10 @@ class Admin::ProductsController < ApplicationController
     @product.save
     redirect_to '/admin/products'
     else
-    @error = @product.errors.full_messages.uniq
+    @error = @product.errors.full_messages
+    if @error.include?("ジャンルを入力してください")
+       @error.delete("ジャンルを入力してください")
+    end
     # if @error.include?("Genreを入力してください")
     # @error.delete("Genreを入力してください")
     # @error.push("ジャンルを入力してください")

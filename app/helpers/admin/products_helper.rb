@@ -19,7 +19,7 @@ def addTax(money,rate)
 end
 
 def jpy(price)
-    "（#{price.to_s(:delimited, delimiter: ',')}）円"
+    "(#{price.to_s(:delimited, delimiter: ',')}）円"
 end
 
 def embedded_svg filename, options={}
