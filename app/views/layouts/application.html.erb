@@ -12,8 +12,9 @@
 
   <body>
     <div class="container-fluid">
+      <div class="containar">
       <!-- ヘッダー -->
-      <header class="navbar navbar-fixed-top">
+        <header class="navbar navbar-fixed-top">
 
           <nav class="navbar-brand">
             <span>NAGANO CAKE</span>
@@ -26,16 +27,16 @@
                 <span>ようこそ、<%= current_customer.last_name %>さん!</span>
               </li>
               <li class="nav-item">
-                <%= link_to ' マイページ ', customers_path, class: 'btn btn-outline-successy bg-info' %>
+                <%= link_to ' マイページ ', customers_path, class: 'btn btn-info' %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-light' %>
+                <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-info' %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to ' カート ', cart_products_path, class: 'btn btn-light' %>
+                <%= link_to ' カート ', cart_products_path, class: 'btn btn-info' %>
               </li>
               <li class="nav-item pl-4">
-                <%= button_to ' ログアウト ', customers_sign_out_path , class: 'btn btn-light', method: :delete %>
+                <%= button_to ' ログアウト ', customers_sign_out_path , class: 'btn btn-info', method: :delete %>
               </li>
 
               <% elsif current_admin %>
@@ -58,37 +59,38 @@
               <% else %>
 
               <li class="nav-item">
-                <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-light' %>
+                <%= link_to ' 商品一覧 ', products_path, class: 'btn btn-info' %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to ' ログイン ', customers_sign_in_path, class: 'btn btn-light' %>
+                <%= link_to ' ログイン ', customers_sign_in_path, class: 'btn btn-info' %>
               </li>
               <li class="nav-item pl-4">
-                <%= link_to ' 新規登録 ', customers_sign_up_path, class: 'btn btn-light' %>
+                <%= link_to ' 新規登録 ', customers_sign_up_path, class: 'btn btn-info' %>
               </li>
               <% end %>
             </ul>
 
-        </nav>
+          </nav>
 
-        <%= form_with url: admin_search_path, scope: :search, method: :get, local: true do |f| %>
-          <div class="input-group">
-            <%= f.text_field :content, placeholder: 'キーワード検索', style: 'border-radius: 5%;' %>
-            <span class="input-group-btn">
+          <%= form_with url: admin_search_path, scope: :search, method: :get, local: true do |f| %>
+            <div class="input-group">
+              <%= f.text_field :content, placeholder: 'キーワード検索', style: 'border-radius: 5%;' %>
+              <span class="input-group-btn">
               <%= f.button class: "btn btn-default" do %>
                 <i class="fa fa-search"></i>
               <% end %>
-            </span>
-          </div>
-        <% end %>
-
+              </span>
+            </div>
+          <% end %>
+        </header>
       </div>
-    </header>
+    </div>
 
 
     <div class="container-fluid">
-      <%= yield %>
-
+      <div class="container">
+        <%= yield %>
+      </div>
     </div>
     <!-- フッター -->
     <footer id="footer">
