@@ -21,8 +21,7 @@ class OrdersController < ApplicationController
     @order.fare = 800
     @order_ship = Ship.find(params[:order][:ship][:id])
     @ship = current_customer.ships.new(postal_code: params[:order][:ship][:postal_code], address: params[:order][:ship][:address], name: params[:order][:ship][:name])
-      render new_order_path unless @ship.valid?
-
+    render :new unless @ship.valid? if params[:order][:key] == 'new_address'
     @cart_products = current_customer.cart_products
     @order_product = current_customer.orders.new
     total_price = 0
