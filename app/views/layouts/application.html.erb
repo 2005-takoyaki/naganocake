@@ -59,7 +59,7 @@
               <!-- 管理者用検索窓 -->
               <%= form_with url: admin_search_path, scope: :search, method: :get, local: true do |f| %>
                 <div class="input-group">
-                  <%= f.text_field :content, placeholder: 'キーワード検索', style: 'border-radius: 5%;' %>
+                  <%= f.text_field :content, placeholder: 'キーワード検索', style: 'border-radius: 5%;', class: "search-form ml-1" %>
                   <span class="input-group-btn">
                   <%= f.button class: "btn btn-default" do %>
                     <i class="fa fa-search"></i>
