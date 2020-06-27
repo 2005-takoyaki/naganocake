@@ -1,41 +1,40 @@
 <div class ="col-sm-11">
 
-<h5 class="offset-sm-2"><span>ジャンル編集</span></h5>
+  <h5 class="offset-sm-2"><span>ジャンル編集</span></h5>
 
-<%= form_for @genre, url: admin_genre_path do |f| %>
+  <%= form_for @genre, url: admin_genre_path do |f| %>
 
-<div class="er">
-<% if @genre.errors.any? %>
-	<h3><%= @genre.errors.count %>error occurrence</h3>
-	<ul>
-		<% @genre.errors.full_messages.each do |message| %>
-		<li><%= message %></li>
-		<% end %>
-	</ul>
-<% end %>
-</div>
+  <div class="er">
+  <% if @genre.errors.any? %>
+    <h3><%= @genre.errors.count %>error occurrence</h3>
+    <ul>
+  		<% @genre.errors.full_messages.each do |message| %>
+  		<li><%= message %></li>
+  		<% end %>
+  	</ul>
+  <% end %>
+  </div>
 
-   <form class="form-inline">
-    <div class="form-group">
+  <form>
+    <div class="form-group form-inline">
     	<font style="font-size:small">
-    	<strong>
-		<%= f.label :ジャンル %>
-		</strong>
-		</font>
-		<%= f.text_field :genre_name %>
+      	<strong>
+		      <%= f.label :ジャンル %>
+		    </strong>
+		  </font>
+		  <%= f.text_field :genre_name, class: "form-control ml-3" %>
 
+      <div class="form-check form-check-inline ml-3">
+    	  <label><%= f.radio_button :is_valid, "有効" , checked: true %> 有効 </label>
+      </div>
 
-    <div class="form-check form-check-inline">
-	  <label><%= f.radio_button :is_valid, "有効" , checked: true %> 有効 </label>
+      <div class="form-check form-check-inline">
+        <label><%= f.radio_button :is_valid, "false" %> 無効</label>
+      </div>
+
+  		<%= f.submit "変更を保存する", class: "btn btn-primary" %>
     </div>
 
-    <div class="form-check form-check-inline">
-	  <label><%= f.radio_button :is_valid, "false" %> 無効</label>
-    </div>
-
-		<%= f.submit "変更を保存する", class: "btn btn-primary" %>
-    </div>
-
-   </form>
-<% end %>
+  </form>
+  <% end %>
 </div>

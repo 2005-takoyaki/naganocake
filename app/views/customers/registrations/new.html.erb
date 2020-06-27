@@ -18,13 +18,13 @@
         <%= f.label :last_name, "(姓)" %>
       </div>
       <div class="form-group col-sm-2">
-        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control" %>
       </div>
       <div class="form-group col-sm-1 text-right ml-3">
         <%= f.label :first_name, "(名)" %>
       </div>
-      <div class="form-group col-sm-3">
-        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+      <div class="form-group col-sm-2">
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control" %>
       </div>
     </div>
 
@@ -36,13 +36,13 @@
         <%= f.label :kana_last_name, "(セイ)" %>
       </div>
       <div class="form-group col-sm-2">
-        <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name" %>
+        <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name", class: "form-control" %>
       </div>
       <div class="form-group col-sm-1 text-right ml-3">
         <%= f.label :kana_first_name, "(メイ)" %>
       </div>
-      <div class="form-group col-sm-3">
-        <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name" %>
+      <div class="form-group col-sm-2">
+        <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name", class: "form-control" %>
       </div>
     </div>
 
@@ -50,8 +50,8 @@
       <div class="form-group col-sm-3">
         <%= f.label :email, "メールアドレス" %>
       </div>
-      <div class="form-group col-sm-3">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="form-group col-sm-2">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
       </div>
     </div>
 
@@ -59,8 +59,8 @@
       <div class="form-group col-sm-3">
         <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
       </div>
-      <div class="form-group col-sm-3">
-        <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+      <div class="form-group col-sm-2">
+        <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "form-control" %>
       </div>
     </div>
 
@@ -69,7 +69,7 @@
         <%= f.label :address, "住所" %>
       </div>
       <div class="form-group col-sm-6">
-          <%= f.text_field :address, autofocus: true, autocomplete: "address", size: 55 %>
+          <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %>
       </div>
     </div>
 
@@ -77,8 +77,8 @@
       <div class="form-group col-sm-3">
         <%= f.label :phone_number, "電話番号(ハイフンなし)" %>
       </div>
-      <div class="form-group col-sm-3">
-        <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+      <div class="form-group col-sm-2">
+        <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", class: "form-control" %>
       </div>
     </div>
 
@@ -89,8 +89,8 @@
             <em>(<%= @minimum_password_length %>文字以上)</em>
           <% end %>
       </div>
-      <div class="form-group col-sm-3">
-        <%= f.password_field :password, autocomplete: "new-password" %>
+      <div class="form-group col-sm-2">
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
       </div>
     </div>
 
@@ -98,8 +98,8 @@
       <div class="form-group col-sm-3">
         <%= f.label :password_confirmation, "パスワード(確認用)" %>
       </div>
-      <div class="form-group col-sm-3">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <div class="form-group col-sm-2">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
       </div>
     </div>
 
