@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @current_customer_ships = Ship.where(customer_id: current_customer.id)
     @order = current_customer.orders.new
     @ship = current_customer.ships.new
   end
@@ -19,13 +20,6 @@ class OrdersController < ApplicationController
   def confirmation_new
     @order = current_customer.orders.new(order_params)
     @order.fare = 800
-    begin
-      @order_ship = Ship.find(params[:order][:ship][:id]) if params[:order][:key] == 'other_address'
-    rescue
-      @ship = current_customer.ships.new(postal_code: params[:order][:ship][:postal_code], address: params[:order][:ship][:address], name: params[:order][:ship][:name])
-      @other_address_error = true
-      render :new
-    end
     @ship = current_customer.ships.new(postal_code: params[:order][:ship][:postal_code], address: params[:order][:ship][:address], name: params[:order][:ship][:name])
     render :new unless @ship.valid? if params[:order][:key] == 'new_address'
     @cart_products = current_customer.cart_products

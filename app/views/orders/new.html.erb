@@ -48,15 +48,18 @@
       </div>
 
       <!-- 登録先住所から選択 -->
-      <div class="pl-5">
-        <%= f.radio_button :key, 'other_address' %>
-        <%= f.label :key, '登録済住所から選択' %><br>
+      <% binding.pry %>
+      <% if @current_customer_ships.present? %>
         <div class="pl-5">
-          <%= f.fields_for @ship do |i| %>
-            <%= i.collection_select :id, Ship.where(customer_id: current_customer.id), :id, :view_all_customer_date, class: "form-control" %>
-          <% end %>
+          <%= f.radio_button :key, 'other_address' %>
+          <%= f.label :key, '登録済住所から選択' %><br>
+          <div class="pl-5">
+            <%= f.fields_for @ship do |i| %>
+              <%= i.collection_select :id, Ship.where(customer_id: current_customer.id), :id, :view_all_customer_date, class: "form-control" %>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <!-- 新しいお届け先から選択 -->
       <div class="pl-5">
