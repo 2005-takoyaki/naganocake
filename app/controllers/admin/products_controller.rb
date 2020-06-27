@@ -44,6 +44,10 @@ class Admin::ProductsController < ApplicationController
     @product.update(product_params)
     redirect_to admin_product_path(@product.id)
     else
+    @error = @product.errors.full_messages
+    if @error.include?("ジャンルを入力してください")
+       @error.delete("ジャンルを入力してください")
+    end
     render :edit
     end
   end
