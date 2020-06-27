@@ -13,9 +13,8 @@ def converting_to_jpy(price)
 end
 
 def addTax(money,rate)
-   taxed_money =  (money*rate).round
+   taxed_money = (money*rate).round
    "#{taxed_money.to_s(:delimited, delimiter: ',')}"
-
 end
 
 def jpy(price)
@@ -32,6 +31,9 @@ def embedded_svg filename, options={}
     doc.to_html.html_safe
 end
 
+def yen
+  "円"
+end
 
 end
 

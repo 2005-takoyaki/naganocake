@@ -2,7 +2,17 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin
 
   def index
-    @orders = Order.all.order(created_at: :desc).page(params[:page]).per(10)
+    before_uri = URI.parse(request.referer) # 遷移前のURL取得
+    path = Rails.application.routes.recognize_path(before_uri.path) # パスに変換
+
+    if path[:controller] == "admin/customers" # 顧客一覧からきたら顧客の分だけ表示
+      @orders = Order.where(customer_id: path[:id]).order(created_at: :desc).page(params[:page]).per(10)
+    elsif path[:controller] == "admin/admin" # 管理者ページから来てたら本日の注文数だけ表示
+      range = Date.today.beginning_of_day..Date.today.end_of_day
+      @orders = Order.where(created_at: range).order(created_at: :desc).page(params[:page]).per(10)
+    else # それ以外（ヘッダーから）は全部表示
+      @orders = Order.all.order(created_at: :desc).page(params[:page]).per(10)
+    end
   end
 
   def show
