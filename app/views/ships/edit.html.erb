@@ -2,6 +2,9 @@
   <div class="col-sm">
     <h5><span>配送先編集</span></h5>
 
+    <%= render 'layouts/error_messages', model: @ship %>
+
+
     <!-- 配送先編集 -->
     <div class="form-group">
       <%= form_for @ship do |f| %>
@@ -22,7 +25,7 @@
         </div>
         <br>
         <div class="actions">
-          <%= f.submit value: "編集する", class: "btn btn-primary float-right" %>
+          <%= f.submit "編集する", class: "btn btn-primary float-right" %>
         </div>
 
       <% end %>

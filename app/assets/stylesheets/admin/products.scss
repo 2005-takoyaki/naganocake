@@ -1,3 +1,27 @@
 // Place all the styles related to the Admin::Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+
+label{
+  color: #808080;
+}
+div{
+  color: #808080;
+}
+.alert {
+    color: #721c24;
+}
+
+.field_with_errors {
+  display: contents;
+  input, textarea, select, collection_select,attachment {
+    @extend .is-invalid;
+  }
+}
+
+.genre_error{
+border-color: #dc3545;
+padding-right: calc(0.75em + 2.3125rem);
+}

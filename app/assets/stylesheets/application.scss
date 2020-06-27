@@ -16,8 +16,15 @@
 
  @import "bootstrap";
 
+
  * {
   background-color: #F3FFD8;
+
+
+ * {
+  background-color: #F3FFD8;
+  font-family: serif;
+  color: #223a70
  }
 
 .btn {
@@ -25,12 +32,55 @@
 }
 
 h5 span {
-  background-color: #EEEEEE;
+  text-decoration: underline;
   padding: 0 1.8rem;
 }
 
 h5 {
-  margin: 50px 0 30px 0;
+  padding: 50px 0 30px 0;
+}
+
+#clear_text {
+  margin: initial;
+}
+
+.ships-form-group {
+  .field {
+    margin-bottom: 15px;
+  }
+
+  .ship_postal_code {
+    width: 160px;
+  }
+  .ship_address {
+    width: 320px;
+  }
+  .ship_name {
+    width: 160px;
+  }
+  .float-right {
+    margin-left: 400px;
+    width: 130px;
+  }
+}
+
+.space-box {
+  height: 90px;
+}
+
+.ships-table {
+  width: 700px;
+
+  .blank {
+    width: 240px;
+  }
+  tbody {
+    td {
+      height: 25px;
+      line-height: 25px;
+    }
+  }
+
 }
 
 .ships-form-group {

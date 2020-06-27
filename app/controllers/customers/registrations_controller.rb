@@ -4,6 +4,10 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  def after_sign_up_path_for(resource)
+   root_path
+  end
+
   # GET customers/sign_up
   # def new
   #   super
@@ -59,4 +63,5 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  before_action :prohibition_admind
 end

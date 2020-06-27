@@ -4,12 +4,14 @@
   </div>
 </div>
 
+<%= render 'layouts/error_messages', model: @ship %>
+
 <!-- 注文情報入力フォーム -->
 <%= form_with model: @order,url: confirmation_new_order_path, local: true do |f| %>
   <!-- 支払い情報入力欄 -->
   <div class="row">
     <div class="col-sm">
-      <h5>支払い情報入力</h5>
+      <h6>支払い情報入力</h6>
       <div class="pl-5">
         <div class="radio-inline">
           <%= f.radio_button :payment_method, 'クレジットカード', checked: "checked" %>
@@ -26,7 +28,7 @@
   <!-- お届け先入力欄 -->
   <div class="form-row">
     <div class="col-sm">
-      <h5>お届け先入力</h5>
+      <h6>お届け先入力</h6>
 
       <!-- ご自身の住所選択 -->
       <div class="pl-5">

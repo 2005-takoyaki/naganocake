@@ -23,7 +23,11 @@
         <tr>
           <td>
             <%= attachment_image_tag cart.product, :image, :fill, 50, 50, format: 'jpeg'%>
+<<<<<<< HEAD
             <%= cart.product&.name %>
+=======
+            <%= cart.product.name %>
+>>>>>>> origin/develop
           </td>
           <td>
             <% tax_price = cart.product.non_taxed_price * 1.1 %>
