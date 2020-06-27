@@ -8,6 +8,8 @@ class CartProductsController < ApplicationController
       @cart_product.save
       redirect_to cart_products_path
     else
+      @cart_product.quantity += params[:cart_product][:quantity].to_i
+      @cart_product.save
       redirect_to cart_products_path
     end
   end
