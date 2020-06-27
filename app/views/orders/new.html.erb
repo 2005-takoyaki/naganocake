@@ -6,6 +6,13 @@
 
 <%= render 'layouts/error_messages', model: @ship %>
 
+<% if @other_address_error %>
+  <ul>
+    <li>住所が登録されていません</li>
+    <li style="list-style: none;"><%= link_to "配送先を登録する", ships_path %></li>
+  </ul>
+<% end %>
+
 <!-- 注文情報入力フォーム -->
 <%= form_with model: @order,url: confirmation_new_order_path, local: true do |f| %>
   <!-- 支払い情報入力欄 -->
