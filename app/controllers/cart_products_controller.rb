@@ -40,9 +40,12 @@ class CartProductsController < ApplicationController
   end
 
   def update
+    @cart_products = current_customer.cart_products
     @cart_product = current_cart.cart_products.find_by(product_id: params[:id])
     @cart_product.update(cart_product_params)
-    redirect_to cart_products_path
+    unless request.referer.include?("/orders/new/confirmation")
+      redirect_to cart_products_path
+    end
   end
 
   private
