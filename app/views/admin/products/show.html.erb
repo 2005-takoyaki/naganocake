@@ -1,42 +1,73 @@
-<h5><span>商品詳細</span></h5>
-
 
 <div class="container">
+	<h5><span>商品詳細</span></h5>
+	<div class="row mt-4">
+	<div class="col-sm-5 d-flex flex-column align-items-center">
+	<%= attachment_image_tag @product, :image, :fill, 300, 300, format: 'jpeg', class: "btn rounded-pill", fallback: "サンプル画像.jpg" %>
+</div>
+
+	<div class="col-sm-6 mt-4">
+
+
+<div class="form-group row">
+	<div class="col-sm-4 col-form-label d-flex flex-column align-items-end">
+		<em>商品名</em>
+	</div>
+	<div class="col-sm-7 d-flex flex-column align-self-center">
+		<strong><%= @product.name %></strong>
+	</div>
+</div>
+
+
+<div class="form-group row">
+	<div class="col-sm-4 col-form-label d-flex flex-column align-items-end">
+		<em>商品説明</em>
+	</div>
+	<div class="col-sm-7 d-flex flex-column align-self-center">
+		<strong><%= simple_format(h(@product.introduction)) %></strong>
+	</div>
+</div>
+
+
+<div class="form-group row">
+	<div class="col-sm-4 col-form-label d-flex flex-column align-items-end">
+		<em>ジャンル</em>
+	</div>
+	<div class="col-sm-7 d-flex flex-column align-self-center">
+		<strong><%= @product.genre.genre_name %></strong>
+	</div>
+</div>
+
+
+<div class="form-group row">
+	<div class="col-sm-4 col-form-label d-flex flex-column align-items-end">
+		<em>税込価格<br>(税抜価格)</em>
+	</div>
+	<div class="col-sm-7 d-flex flex-column align-self-center">
+		<strong><%= addTax(@product.non_taxed_price,1.10) %> <br>
+		<%= jpy(@product.non_taxed_price) %></strong>
+	</div>
+</div>
+
+
+<div class="form-group row">
+	<div class="col-sm-4 col-form-label d-flex flex-column align-items-end">
+		<em>販売ステータス</em>
+	</div>
+	<div class="col-sm-7 d-flex flex-column align-self-center">
+		<strong><%= sales(@product.has_sold) %></strong>
+	</div>
+</div>
+
+</div>
+</div>
+
 <div class="row">
-<div class="col-sm-5">
-	<%= attachment_image_tag @product, :image, :fill, 300, 200, format: 'jpeg', fallback: "サンプル画像.jpg" %>
-</div>
-
-	<div class="col-sm-4">
-	<label>商品名</label>
-	<%= @product.name %>
-
-
-	<div>
-	<label>商品説明</label>
-	<%= @product.introduction %>
+	<div class="col-sm-11 d-flex flex-column align-items-end">
+	<%= link_to "編集する",edit_admin_product_path(@product), class: "btn btn-outline-light bg-dark rounded-pill btn-lg edit_admin_product_#{@product.id}" %>
 	</div>
-
-	<div>
-	<label>ジャンル</label>
-	<%= @product.genre.genre_name %>
-	</div>
-
-	<div>
-	<label>税込価格(税抜価格)</label>
-	<%= addTax(@product.non_taxed_price,1.10) %>
-	<%= jpy(@product.non_taxed_price) %>
-	</div>
-
-	<div>
-	<label>販売ステータス</label>
-	<%= sales(@product.has_sold) %>
-	</div>
+</div>
 
 </div>
 
-<div class="col-sm-2 align-self-end">
-<%= link_to "編集する",edit_admin_product_path(@product), class: "btn btn-primary btn-lg edit_admin_product_#{@product.id}" %>
-</div>
-</div>
-</div>
+

@@ -26,12 +26,15 @@ class Admin::ProductsController < ApplicationController
     redirect_to '/admin/products'
     else
     @error = @product.errors.full_messages
-    if @error.include?("Genreを入力してください")
-    @error.delete("Genreを入力してください")
-    @error.push("ジャンルを入力してください")
-    @error_class = 1
-    render :new
+    if @error.include?("ジャンルを入力してください")
+       @error.delete("ジャンルを入力してください")
     end
+    # if @error.include?("Genreを入力してください")
+    # @error.delete("Genreを入力してください")
+    # @error.push("ジャンルを入力してください")
+    # @error_class = 1
+    render :new
+    #end
     end
   end
 
