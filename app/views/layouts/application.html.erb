@@ -56,6 +56,18 @@
                 <%= button_to ' ログアウト ', admin_sign_out_path , class: 'btn btn-info', method: :delete %>
               </li>
 
+              <!-- 管理者用検索窓 -->
+              <%= form_with url: admin_search_path, scope: :search, method: :get, local: true do |f| %>
+                <div class="input-group">
+                  <%= f.text_field :content, placeholder: 'キーワード検索', style: 'border-radius: 5%;' %>
+                  <span class="input-group-btn">
+                  <%= f.button class: "btn btn-default" do %>
+                    <i class="fa fa-search"></i>
+                  <% end %>
+                  </span>
+                </div>
+              <% end %>
+
               <% else %>
 
               <li class="nav-item">
@@ -72,16 +84,6 @@
 
           </nav>
 
-          <%= form_with url: admin_search_path, scope: :search, method: :get, local: true do |f| %>
-            <div class="input-group">
-              <%= f.text_field :content, placeholder: 'キーワード検索', style: 'border-radius: 5%;' %>
-              <span class="input-group-btn">
-              <%= f.button class: "btn btn-default" do %>
-                <i class="fa fa-search"></i>
-              <% end %>
-              </span>
-            </div>
-          <% end %>
         </header>
       </div>
     </div>
