@@ -4,37 +4,36 @@
 
 <%= form_for @genre, url: admin_genres_path do |f| %>
 
-<% if @genre.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <ul>
-      <% @genre.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-   <form class="form-inline">
-    <div class="form-group pl-3">
-    <font style="font-size:small">
-    <strong>
-		<%= f.label :ジャンル %>
-    </strong>
-    </font>
-		<%= f.text_field :genre_name %>
-
-
-    <div class="form-check form-check-inline">
-	  <label><%= f.radio_button :is_valid, "true" , checked: true %> 有効 </label>
+  <% if @genre.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <ul>
+        <% @genre.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
 
-    <div class="form-check form-check-inline">
-	  <label><%= f.radio_button :is_valid, "false" %> 無効</label>
+  <form>
+    <div class="form-group form-inline pl-3">
+      <font style="font-size:small">
+        <strong>
+		      <%= f.label :ジャンル %>
+        </strong>
+      </font>
+		  <%= f.text_field :genre_name, class: "form-control ml-3" %>
+
+
+      <div class="form-check form-check-inline ml-3">
+        <label><%= f.radio_button :is_valid, "true" , checked: true %> 有効 </label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <label><%= f.radio_button :is_valid, "false" %> 無効</label>
+      </div>
+
+		  <%= f.submit "追加", class: "btn btn-primary" %>
     </div>
-
-		<%= f.submit "追加", class: "btn btn-primary" %>
-    </div>
-
    </form>
 <% end %>
 
