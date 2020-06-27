@@ -27,10 +27,12 @@ class Customers::SessionsController < Devise::SessionsController
   # end
 
   def reject_customer
-    @customer = Customer.find_by(email: params[:customer][:email])
-    if @customer.is_valid == false
-      flash[:error] = "退会済みです。"
-      redirect_to customers_sign_in_path
+    if params[:customer][:email].present?
+      @customer = Customer.find_by(email: params[:customer][:email])
+      if @customer.is_valid == false
+        flash[:error] = "退会済みです。"
+        redirect_to customers_sign_in_path
+      end
     end
   end
 end
