@@ -1,39 +1,47 @@
 <div class="row">
-		<div class="col-3">
-			<table class ="table">
-				<tr>
-					<th><strong> ジャンル検索</strong></th>
-					<td>
-						<!--scss td {border: none;}-->
-						<% @genres.each do |genre| %>
-						<%= link_to product_path(genre.id) do %>
-						<%= @product.genre.genre_name %>
-						<% end%>
-					</td>
-						<% end %>
+	<div class="col-sm-2 mt-4">
+		<table border="1">
+    		<thead>
+        		<tr valign="middle">
+        		<th width="180" height="20">
+					<strong>ジャンル検索</strong>
+				</th>
 				</tr>
-			</table>
-		</div>
+			</thead>
+		</table>
+		<table frame="box">
+			<tbody>
+				<% @genres.each do |genre| %>
+				<tr valign="top">
+					<td width="180" height="60">
+						<%= link_to  products_path(genre_id: genre.id) do %>
+						<%= genre.genre_name %>
+						<% end%>
+				<% end %>
+					</td>
+				</tr>
+    		</tbody>
+  		</table>
+  	</div>
+	<div class ="col-sm-5 mt-5 px-5">
+				<%= attachment_image_tag @product, :image, :fill, 350, 180, format: 'jpeg'%>
+	</div>
 
-		<div class ="col-9">
-			<div class="row">
-				<div class="col-4">
-					<%= attachment_image_tag @product, :image, :fill, 300, 600, format: 'jpeg'%>
-				</div>
-				<div class="col-5">
-					<%= @product.name %><br>
-					<%= @product.introduction%><br>
-					<!--<p>¥</p><%= @product.non_taxed_price%><p>(税込商品)</p>-->
-
-					<%= form_with model: @cart_product, url: cart_products_path(product_id: @product.id), method: :post, local: true do |f| %>
-						<%= f.label :quantity, "個数選択"%>
-						<%= f.select :quantity, [1,2,3,4,5,6,7,8,9] %>
-						<%= f.hidden_field :product_id, :value => @product.id %>
-						<%= f.submit('カートに入れる',class: "btn btn-primary") %>
-						<!--<%= link_to ""%>-->
-					<% end %>
+	<div class ="col-sm-5 mt-5">
+				<h3><strong><%= @product.name %></strong></h3><br>
+				<p><%= @product.introduction %></p><br>
+				<strong><h3>¥<%= addTax(@product.non_taxed_price,1.10) %></h3></strong>
+				<font style="font-size:small">(税込)</font><br>
+			<div class="form-group mt-4">
+				<div align="right">
+				<%= form_with model: @cart_product, url: cart_products_path(product_id: @product.id), method: :post, local: true do |f| %>
+					<%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10],  {prompt: "個数選択"}, {class: "btn btn-primary"} %>
+					<%= f.hidden_field :product_id, :value => @product.id %>
+					<%= f.submit('カートに入れる',class: "btn btn-primary") %>
+						
+				<% end %>
 				</div>
 			</div>
 		</div>
+	</div>
 </div>
-

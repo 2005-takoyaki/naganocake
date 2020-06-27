@@ -1,2 +1,54 @@
-<h1>Products#top</h1>
-<p>Find me in app/views/products/top.html.erb</p>
+<div class="row">
+	<div class="col-2 sm-2 mt-4">
+		<table border="1">
+    		<thead>
+        		<tr valign="middle">
+        		<th width="180" height="20">
+					<strong>ジャンル検索</strong>
+				</th>
+				</tr>
+			</thead>
+		</table>
+		<table frame="box">
+			<tbody>
+				<% @genres.each do |genre| %>
+				<tr valign="top">
+					<td width="180" height="60">
+						<%= link_to  products_path(genre_id: genre.id) do %>
+						<%= genre.genre_name %>
+						<% end%>
+				<% end %>
+					</td>
+				</tr>
+    		</tbody>
+  		</table>
+  	</div>
+
+	<div class="col-10 sm-10 ">
+  		<div class="jumbotron mt-4">
+    		<div class="center-block offset-2">ようこそ、NaganoCakeへ！<br>このサイトは、ケーキ販売のECサイトになります。<br>会員でない方も商品の閲覧はできますが、<br>購入には会員登録が必要になります。
+    		</div>
+  		</div>
+  		<strong>
+		<h3>オススメ商品</h3>
+		</strong>
+		<div class="row">
+			<% @products.each do |product| %>
+			<div class="topnewbox">
+  				<div class="list p-2 my-2">
+					<%= attachment_image_tag product, :image, :fill, 200, 100, format: 'jpeg'%><br>
+					<%= link_to product.name, product_path(product.id) %><br>
+					¥<%= product.non_taxed_price %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+			<div class="col-11 sm-11">
+				<div class="text-right">
+				<%= link_to products_path do %>
+  				<p><u>もっと見る></u></p>
+				<% end %>
+				</div>
+			</div>
+	</div>
+</div>

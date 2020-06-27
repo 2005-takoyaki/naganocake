@@ -23,7 +23,11 @@
         <tr>
           <td class="table-light align-middle">
             <%= attachment_image_tag cart.product, :image, :fill, 50, 50, format: 'jpeg'%>
+<<<<<<< HEAD
+            <%= cart.product&.name %>
+=======
             <%= cart.product.name %>
+>>>>>>> origin/develop
           </td>
           <td class="table-light align-middle">
             <% tax_price = cart.product.non_taxed_price * 1.1 %>

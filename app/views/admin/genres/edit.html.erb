@@ -1,4 +1,6 @@
-<h5><span>ジャンル編集</span></h5>
+<div class ="col-sm-11">
+
+<h5 class="offset-sm-2"><span>ジャンル編集</span></h5>
 
 <%= form_for @genre, url: admin_genre_path do |f| %>
 
@@ -15,7 +17,11 @@
 
    <form class="form-inline">
     <div class="form-group">
+    	<font style="font-size:small">
+    	<strong>
 		<%= f.label :ジャンル %>
+		</strong>
+		</font>
 		<%= f.text_field :genre_name %>
 
 
@@ -32,3 +38,4 @@
 
    </form>
 <% end %>
+</div>
