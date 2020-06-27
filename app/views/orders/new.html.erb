@@ -54,7 +54,7 @@
           <%= f.label :key, '登録済住所から選択' %><br>
           <div class="pl-5">
             <%= f.fields_for @ship do |i| %>
-              <%= i.collection_select :id, Ship.where(customer_id: current_customer.id), :id, :view_all_customer_date, class: "form-control" %>
+              <%= i.collection_select :id, Ship.where(customer_id: current_customer.id), :id, :view_all_customer_date, class: "btn btn-primary" %>
             <% end %>
           </div>
         </div>
