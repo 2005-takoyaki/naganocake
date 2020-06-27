@@ -18,7 +18,6 @@ module Naganocake
     config.time_zone = 'Tokyo'
 
     config.i18n.default_locale = :ja
-<<<<<<< HEAD
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       if instance.kind_of?(ActionView::Helpers::Tags::Label)
         # skip when label
@@ -27,8 +26,6 @@ module Naganocake
         "<div class=\"field_with_errors\">#{html_tag}<span class=\"help-block\">#{instance.error_message.first}</span></div>".html_safe
       end
     end
-=======
 
->>>>>>> origin/develop
   end
 end
