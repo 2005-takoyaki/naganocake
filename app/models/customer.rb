@@ -5,11 +5,20 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #新規登録時のバリデーション
-  validates :kana_last_name, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
-  validates :kana_first_name, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
-  validates :postal_code, presence: true, format: { with: /\A\d{7}\z/ }
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :kana_last_name, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
+  validates :kana_first_name, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/}
+  validates :postal_code, format: { with: /\A\d{7}\z/ }
   validates :address, presence: true
-  validates :phone_number, presence: true, format: {with: /\A\d{10,11}\z/}
+  validates :phone_number, format: {with: /\A\d{10,11}\z/}
+  validate :password_complexity
+
+  def password_complexity
+    return if password.blank? || password =~ /\A[a-z0-9]+\z/i
+
+    errors.add :password, 'は不正な値です。'
+  end
 
 
   has_many :ships, dependent: :destroy

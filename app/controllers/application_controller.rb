@@ -50,14 +50,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  #ログイン顧客を弾く
-  def prohibition_customer
-    if current_customer
-      redirect_to customers_path
-    end
-  end
-
-
-
 
 end
