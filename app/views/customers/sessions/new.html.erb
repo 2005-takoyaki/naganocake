@@ -3,22 +3,29 @@
     <!-- ログインフォーム -->
     <div class="form-group">
       <h5><span>会員の方はこちらからログイン</span></h5>
+
       <%= form_for(resource, as: resource_name, url: customers_sign_in_path) do |f| %>
+
+      <div class="row ml-5">
+        <%= flash[:error] %>
+      </div>
+
       <div class="row ml-5">
         <%= f.label :email, "メールアドレス", class: "col-sm-2" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-sm-7" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-sm-7 form-control" %>
       </div>
 
       <div class="row mt-3 ml-5">
         <%= f.label :password, "パスワード", class: "col-sm-2" %>
-        <%= f.password_field :password, autocomplete: "current-password", class: "col-sm-7" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "col-sm-7 form-control" %>
         <p class="col-sm-9 text-right"><%= link_to "⇒パスワードを忘れた方はこちら", "#" %></p>
       </div>
 
       <div class="row actions ml-5">
         <div class="col-sm-2"></div>
-        <%= f.submit 'ログイン', class: 'btn btn-primary col-sm-2' %>
+        <%= f.submit 'ログイン', class: 'btn btn-primary col-sm-2 form-control' %>
       </div>
+
       <% end %>
     </div>
   </div>
