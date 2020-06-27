@@ -7,20 +7,20 @@
 <div class="row">
 	<!-- 注文情報テーブル -->
 	<div class="col-sm-6">
- 		<span>注文情報</span>
+ 		<p class="font-weight-bold">注文情報</p>
 		<table class="table table-bordered">
-			<tbody class="thead-light">
+			<tbody>
 				<tr>
-					<th>注文日</th>
-					<td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+					<th class="table-info">注文日</th>
+					<td class="table-light"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
 				</tr>
 				<tr>
-					<th>支払い方法</th>
-					<td><%= @order.payment_method %></td>
+					<th class="table-info">支払い方法</th>
+					<td class="table-light"><%= @order.payment_method %></td>
 				</tr>
 				<tr>
-					<th>ステータス</th>
-					<td><%= @order.order_status %></td>
+					<th class="table-info">ステータス</th>
+					<td class="table-light"><%= @order.order_status %></td>
 				</tr>
 			</tbody>
 		</table>
@@ -28,19 +28,19 @@
 
 	<!-- 請求情報テーブル -->
 	<div class="col-sm-4">
-	 	<span>請求情報</span>
+	 	<p class="font-weight-bold">請求情報</p>
 		<table class="table table-bordered">
-			<tbody class="thead-light">
+			<tbody>
 				<tr>
-					<th>商品合計</th>
-					<td><%= (@order.billing_total - @order.fare).floor.to_s(:delimited) %></td>
+					<th class="table-info">商品合計</th>
+					<td class="table-light"><%= (@order.billing_total - @order.fare).floor.to_s(:delimited) %></td>
 				</tr>
-					<th>送料</th>
-					<td><%= @order.fare.floor.to_s(:delimited) %></td>
+					<th class="table-info">送料</th>
+					<td class="table-light"><%= @order.fare.floor.to_s(:delimited) %></td>
 				</tr>
 				<tr>
-					<th>請求金額</th>
-					<td><%= @order.billing_total.floor.to_s(:delimited) %></td>
+					<th class="table-info">請求金額</th>
+					<td class="table-light"><%= @order.billing_total.floor.to_s(:delimited) %></td>
 				</tr>
 			</tbody>
 		</table>
@@ -50,23 +50,23 @@
 <!-- 注文内容テーブル -->
 <div class="row">
 	<div class="col-sm-7">
-		<span>注文内容</span>
+		<p class="font-weight-bold">注文内容</p>
 		<table class="table table-bordered">
-			<thead class="thead-light">
+			<thead>
 				<tr>
-					<th>商品名</th>
-					<th>単価(税込)</th>
-					<th>個数</th>
-					<th>小計</th>
+					<th class="table-info">商品名</th>
+					<th class="table-info">単価(税込)</th>
+					<th class="table-info">個数</th>
+					<th class="table-info">小計</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @order_products.each do |order_product| %>
 					<tr>
-						<td><%= order_product.product.name %></td>
-						<td><%= order_product.taxed_price.floor.to_s(:delimited) %></td>
-						<td><%= order_product.number.floor.to_s(:delimited) %></td>
-						<td><%= (order_product.taxed_price * order_product.number).floor.to_s(:delimited) %></td>
+						<td class="table-light"><%= order_product.product.name %></td>
+						<td class="table-light"><%= order_product.taxed_price.floor.to_s(:delimited) %></td>
+						<td class="table-light"><%= order_product.number.floor.to_s(:delimited) %></td>
+						<td class="table-light"><%= (order_product.taxed_price * order_product.number).floor.to_s(:delimited) %></td>
 					</tr>
 				<% end %>
 			</tbody>

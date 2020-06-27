@@ -10,18 +10,18 @@
   <!-- カートの商品 -->
   <div class="col-sm-7">
     <table class="table table-bordered">
-      <thead class="thead-light">
+      <thead>
         <tr>
-          <th>商品名</th>
-          <th>単価(税込)</th>
-          <th>数量</th>
-          <th>小計</th>
+          <th class="table-info">商品名</th>
+          <th class="table-info">単価(税込)</th>
+          <th class="table-info">数量</th>
+          <th class="table-info">小計</th>
         </tr>
       </thead>
       <tbody>
         <% @cart_products.each do |cart| %>
         <tr>
-          <td>
+          <td class="table-light align-middle">
             <%= attachment_image_tag cart.product, :image, :fill, 50, 50, format: 'jpeg'%>
 <<<<<<< HEAD
             <%= cart.product&.name %>
@@ -29,18 +29,18 @@
             <%= cart.product.name %>
 >>>>>>> origin/develop
           </td>
-          <td>
+          <td class="table-light align-middle">
             <% tax_price = cart.product.non_taxed_price * 1.1 %>
             <%= tax_price.floor.to_s(:delimited) %>
           </td>
-          <td>
+          <td class="table-light align-middle">
             <%= form_with model: cart, url: cart_product_path(cart.product.id), method: :patch, local: true do |f| %>
-              <%= f.number_field :quantity, min:1, step: 1, style: "width: 60px;" %>
-              <%= f.submit '変更', class: "btn btn-primary btn-sm" %>
+              <%= f.number_field :quantity, min:1, step: 1, style: "width: 60px;", class: "form-control float-left" %>
+              <%= f.submit '変更', class: "btn btn-primary btn-sm float-left mt-1" %>
             <% end %>
           </td>
           <% subtotal = tax_price * cart.quantity %>
-          <td><%= subtotal.floor.to_s(:delimited) %></td>
+          <td class="table-light align-middle"><%= subtotal.floor.to_s(:delimited) %></td>
         </tr>
         <% end %>
       </tbody>
@@ -50,18 +50,18 @@
   <!-- 金額情報テーブル -->
   <div class="col-sm-4 pl-5">
     <table class="table table-bordered">
-      <tbody class="thead-light">
+      <tbody>
         <tr>
-          <th>送料</th>
-          <td><%= @order.fare.floor.to_s(:delimited) %></td>
+          <th class="table-info">送料</th>
+          <td class="table-light"><%= @order.fare.floor.to_s(:delimited) %></td>
         </tr>
         <tr>
-          <th>商品合計</th>
-          <td><%= (@order.billing_total - @order.fare).floor.to_s(:delimited) %></td>
+          <th class="table-info">商品合計</th>
+          <td class="table-light"><%= (@order.billing_total - @order.fare).floor.to_s(:delimited) %></td>
         </tr>
         <tr>
-          <th>請求金額</th>
-          <td><%= @order.billing_total.to_s(:delimited) %></td>
+          <th class="table-info">請求金額</th>
+          <td class="table-light"><%= @order.billing_total.to_s(:delimited) %></td>
         </tr>
       </tbody>
     </table>
@@ -80,7 +80,7 @@
       <span><%= @order.payment_method %></span>
     </div>
   </div>
-    
+
   <!-- 自分の住所に送る -->
   <% if params[:order][:key] == 'my_address' %>
     <div class="row mt-3">
@@ -97,7 +97,7 @@
     <%= f.hidden_field :postal_code, :value => current_customer.postal_code %>
     <%= f.hidden_field :address, :value => current_customer.address %>
     <%= f.hidden_field :address_name, :value => current_customer.last_name + current_customer.first_name %>
-      
+
   <!-- 登録済みの住所に送る -->
   <% elsif params[:order][:key] == 'other_address' %>
     <div class="row mt-3">
@@ -114,7 +114,7 @@
     <%= f.hidden_field :postal_code, :value => @order_ship.postal_code %>
     <%= f.hidden_field :address, :value => @order_ship.address %>
     <%= f.hidden_field :address_name, :value => @order_ship.name %>
-      
+
   <!-- 新しい住所に送る -->
   <% else %>
     <div class="row mt-3">
