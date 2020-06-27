@@ -4,10 +4,7 @@ class Product < ApplicationRecord
 	validates :genre_id, presence: { message: ':必ず選択してください。' }
 	validates :has_sold, inclusion: { in: [true, false], message: ':必ず選択してください。' }
 	validates :name, uniqueness: true
-
-	validates :non_taxed_price,
-		presence: { message: ':必ず1円以上を入力してください。' },
-		numericality: { only_integer: true, message: ':必ず半角の整数で入力してください。' }
+	validates :non_taxed_price,numericality: { only_integer: true, message: ':必ず半角の整数で入力してください。' }
 
 	belongs_to :genre
 	attachment :image

@@ -17,7 +17,7 @@
 	<h5><span>商品新規登録</span></h5>
 	<div class="row mt-5">
 	<div class="col-sm-5 d-flex flex-column align-items-center">
-	<%= attachment_image_tag @product, :image, :fill, 100, 100, format: 'jpeg', class: "btn rounded-pill", fallback: "サンプル画像.jpg" %>
+	<%= attachment_image_tag @product, :image, :fill, 300, 300, format: 'jpeg', class: "btn rounded-pill", fallback: "サンプル画像.jpg" %>
 	<div class =" mt-4">
 	<%= f.attachment_field :image %>
 	</div>
