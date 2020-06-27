@@ -1,9 +1,22 @@
 ja:
   activerecord:
     models:
+      customer: 顧客
       genre: ジャンル
       product: 商品
+      ship: 配送先
     attributes:
+      customer:
+        last_name: 苗字
+        first_name: 名前
+        kana_last_name: ミョウジ
+        kana_first_name: ナマエ
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        address: 住所
+        phone_number: 電話番号
+        is_valid: 会員ステータス
       genre:
         genre_id: ジャンル
         genre_name: ジャンル
@@ -16,6 +29,11 @@ ja:
         genre_name: ジャンル
         genre_id: ジャンル
         genre: ジャンル
+      ship:
+        customer_id: 顧客
+        name: 宛名
+        postal_code: 郵便番号
+        address: 住所
   views:
     pagination:
       first: "&laquo; 最初"

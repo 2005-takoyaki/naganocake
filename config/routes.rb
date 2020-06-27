@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     delete '/customers/sign_out', to: 'customers/sessions#destroy'
     get '/customers/sign_up', to: 'customers/registrations#new'
     post '/customers', to: 'customers/registrations#create'
+    get '/password/edit', to: 'customers/registrations#edit'
+    get '/password/update', to: 'customers/registrations#update'
   end
 
   #ルート設定
