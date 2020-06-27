@@ -76,6 +76,8 @@ gem 'hirb'
 gem 'hirb-unicode'
 gem 'pry-rails'
 
+
 gem 'rails-i18n'
+
 
 gem 'dotenv-rails'
