@@ -92,12 +92,17 @@
 
 
     <div class="container-fluid">
-      <div class="container">
+      <div class="container main">
         <%= yield %>
       </div>
     </div>
     <!-- フッター -->
-    <footer id="footer">
-    </footer>
+    <% unless current_admin %>
+      <div class="container-fluid">
+        <!-- <div class="container"> -->
+          <footer class="navbar navbar-fixed-top"></footer>
+        <!-- </div> -->
+      </div>
+    <% end %>
   </body>
 </html>
