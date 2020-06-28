@@ -18,13 +18,18 @@
 
  body {
   background-image: url("25905_1.jpg");
-  background-color: rgba(243,255,216,0.6);
+  background-color: rgba(243,255,216,0.4);
+  background-size: cover;
   background-blend-mode: lighten;
  }
 
  * {
   font-family: serif;
   color: #223a70
+ }
+
+ #logo {
+  border-bottom: none;
  }
 
 a {
