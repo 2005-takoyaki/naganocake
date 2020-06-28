@@ -42,7 +42,6 @@ class CartProductsController < ApplicationController
   def update
     @cart_product = current_cart.cart_products.find_by(product_id: params[:id])
     @cart_product.update(cart_product_params)
-    redirect_to cart_products_path
   end
 
   private
