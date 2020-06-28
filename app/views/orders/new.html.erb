@@ -39,7 +39,7 @@
 
       <!-- ご自身の住所選択 -->
       <div class="pl-5">
-        <%= f.radio_button :key, 'my_address', checked: "checked" %>
+        <%= f.radio_button :key, 'my_address', checked: "checked" ,id:"address_1"%>
         <%= f.label :key, 'ご自身の住所' %><br>
         <div class="pl-5">
           <%= current_customer.postal_code + current_customer.address %><br>
@@ -48,13 +48,13 @@
       </div>
 
       <!-- 登録先住所から選択 -->
-      <% if current_customer.ships.where(customer_id: current_customer.id).present? %>
+      <% if @current_carts.present? %>
         <div class="pl-5">
-          <%= f.radio_button :key, 'other_address' %>
+          <%= f.radio_button :key, 'other_address' ,id:"address_2" %>
           <%= f.label :key, '登録済住所から選択' %><br>
           <div class="pl-5">
             <%= f.fields_for @ship do |i| %>
-              <%= i.collection_select :id, Ship.where(customer_id: current_customer.id), :id, :view_all_customer_date, {}, class: 'col-sm-4 form-control primary' %>
+              <%= i.collection_select :id, Ship.where(customer_id: current_customer.id), :id, :view_all_customer_date, {}, class: 'col-sm-4 form-control primary',oninput:"AutoCheck(this.value ,'address_2');" %>
             <% end %>
           </div>
         </div>
@@ -62,22 +62,22 @@
 
       <!-- 新しいお届け先から選択 -->
       <div class="pl-5">
-        <%= f.radio_button :key, 'new_address' %>
+        <%= f.radio_button :key, 'new_address',id:"address_3",value:"on" %>
         <%= f.label :key, '新しいお届け先' %><br>
         <div class="pl-5">
           <%= f.fields_for @ship do |i| %>
             <table class="table table-sm table-borderless col-sm-10">
               <tr>
                 <td><%= i.label :postal_code, '郵便番号(ハイフンなし)' %></td>
-                <td><%= i.text_field :postal_code ,class: "col-sm-5 form-control" %></td>
+                <td><%= i.text_field :postal_code ,class: "col-sm-5 form-control",oninput:"AutoCheck(this.value ,'address_3');" %></td>
               </tr>
               <tr>
                 <td><%= i.label :address, "住所" %></td>
-                <td><%= i.text_field :address, size:60,class: "form-control" %></td>
+                <td><%= i.text_field :address, size:60,class: "form-control",oninput:"AutoCheck(this.value ,'address_3');" %></td>
               </tr>
               <tr>
                 <td><%= i.label :name, '宛名' %></td>
-                <td><%= i.text_field :name, size:30,class: "col-sm-5 form-control" %></td>
+                <td><%= i.text_field :name, size:30,class: "col-sm-5 form-control",oninput:"AutoCheck(this.value ,'address_3');" %></td>
               </tr>
             </table>
           <% end %>
@@ -96,3 +96,13 @@
 
 <% end %>
 
+<script type="text/javascript">
+function AutoCheck(str,checkname) {
+    if( str.length > 0 ) {
+        document.getElementById(checkname).checked = true;
+    }
+    else {
+        document.getElementById(checkname).checked = false;
+    }
+}
+</script>
