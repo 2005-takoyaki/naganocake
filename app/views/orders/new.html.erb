@@ -48,7 +48,7 @@
       </div>
 
       <!-- 登録先住所から選択 -->
-      <% if current_customer.ships.where(customer_id: current_customer.id).present? %>
+      <% if @current_carts.present? %>
         <div class="pl-5">
           <%= f.radio_button :key, 'other_address' %>
           <%= f.label :key, '登録済住所から選択' %><br>
