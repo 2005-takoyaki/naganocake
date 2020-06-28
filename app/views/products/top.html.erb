@@ -1,10 +1,10 @@
 <div class="row">
-	<div class="col-2 sm-2 mt-4">
+	<div class="col-sm-2 mt-4">
 		<table border="1">
     		<thead>
-        		<tr valign="middle">
+        		<tr class="table-info">
         		<th width="180" height="20">
-					<strong>ジャンル検索</strong>
+					ジャンル検索
 				</th>
 				</tr>
 			</thead>
@@ -12,7 +12,7 @@
 		<table frame="box">
 			<tbody>
 				<% @genres.each do |genre| %>
-				<tr valign="top">
+				<tr class="table-light">
 					<td width="180" height="60">
 						<%= link_to  products_path(genre_id: genre.id) do %>
 						<%= genre.genre_name %>
@@ -24,11 +24,11 @@
   		</table>
   	</div>
 
-	<div class="col-10 sm-10 ">
-  		<div class="jumbotron mt-4">
-    		<div class="center-block offset-2">ようこそ、NaganoCakeへ！<br>このサイトは、ケーキ販売のECサイトになります。<br>会員でない方も商品の閲覧はできますが、<br>購入には会員登録が必要になります。
-    		</div>
-  		</div>
+	<div class="col-sm-10 ">
+		<strong>
+  		<div class="jumbotron jumbotron-fluid text-white text-left pl-5 mt-4">
+    			ようこそ、NaganoCakeへ！<br>このサイトは、ケーキ販売のECサイトになります。<br>会員でない方も商品の閲覧はできますが、<br>購入には会員登録が必要になります。
+    	</div>
   		<strong>
 		<h3>オススメ商品</h3>
 		</strong>
@@ -36,7 +36,9 @@
 			<% @products.each do |product| %>
 			<div class="topnewbox">
   				<div class="list p-2 my-2">
-					<%= attachment_image_tag product, :image, :fill, 200, 100, format: 'jpeg'%><br>
+  					<%= link_to product_path(product.id) do %>
+					<%= attachment_image_tag product, :image, :fill, 200, 100, format: 'jpeg'%>
+					<% end %><br>
 					<%= link_to product.name, product_path(product.id) %><br>
 					¥<%= product.non_taxed_price %>
 				</div>

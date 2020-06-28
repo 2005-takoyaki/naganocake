@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  # before_action :authenticate_customer!only: [:index,:show]
+  
   def index
     @genres = Genre.where(genres: {is_valid: "true"})
     # urlにgenre_id(params)がある場合

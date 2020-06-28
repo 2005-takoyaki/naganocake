@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @current_carts = Ship.where(customer_id: current_customer.id)
     @order = current_customer.orders.new
     @ship = current_customer.ships.new
   end
