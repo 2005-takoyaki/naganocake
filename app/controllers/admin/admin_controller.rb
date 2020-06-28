@@ -1,7 +1,6 @@
 class Admin::AdminController < ApplicationController
   before_action :authenticate_admin, only: [:index, :destroy]
   before_action :prevent_logged_in_admin, only: [:new, :create]
-  before_action :prohibition_customer, except: :destroy
 
   def new # ログイン画面
   end

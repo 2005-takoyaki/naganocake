@@ -8,6 +8,8 @@ class CartProductsController < ApplicationController
       @cart_product.save
       redirect_to cart_products_path
     else
+      @cart_product.quantity += params[:cart_product][:quantity].to_i
+      @cart_product.save
       redirect_to cart_products_path
     end
   end
@@ -40,7 +42,6 @@ class CartProductsController < ApplicationController
   def update
     @cart_product = current_cart.cart_products.find_by(product_id: params[:id])
     @cart_product.update(cart_product_params)
-    redirect_to cart_products_path
   end
 
   private

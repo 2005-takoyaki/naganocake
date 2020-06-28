@@ -21,6 +21,10 @@ li,h4 {
     color: #721c24;
 }
 
-.paging{
-	font-size: 20px;
+.pagination>li>a {
+  border: none;
+  color: #223a70;
+  background: #F3FFD8;
+  border-radius: 30px;
 }
+

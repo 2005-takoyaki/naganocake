@@ -17,7 +17,9 @@
         <header class="navbar navbar-fixed-top">
 
           <nav class="navbar-brand">
-            <span>NAGANO CAKE</span>
+            <%= link_to root_path  do %>
+              <span><%= image_tag 'logo.png' %></span>
+            <% end %>
           </nav>
           <nav>
             <ul class="nav navbar  navbar-light">
@@ -54,7 +56,7 @@
               </li>
               <li class="nav-item pl-4">
                 <%= button_to ' ログアウト ', admin_sign_out_path , class: 'btn btn-info', method: :delete %>
-              </li>
+              </li><br>
 
               <!-- 管理者用検索窓 -->
               <%= form_with url: admin_search_path, scope: :search, method: :get, local: true do |f| %>

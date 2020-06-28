@@ -3,7 +3,7 @@
 	<h5><span>商品詳細</span></h5>
 	<div class="row mt-4">
 	<div class="col-sm-5 d-flex flex-column align-items-center">
-	<%= attachment_image_tag @product, :image, :fill, 300, 300, format: 'jpeg', class: "btn rounded-pill", fallback: "サンプル画像.jpg" %>
+	<%= attachment_image_tag @product, :image, :fill, 300, 300, format: 'jpeg', class: "btn rounded-pill", fallback: "sample.jpeg" %>
 </div>
 
 	<div class="col-sm-6 mt-4">
@@ -44,7 +44,7 @@
 		<em>税込価格<br>(税抜価格)</em>
 	</div>
 	<div class="col-sm-7 d-flex flex-column align-self-center">
-		<strong><%= addTax(@product.non_taxed_price,1.10) %> <br>
+		<strong><%= addTax(@product.non_taxed_price,1.10) %> <%= yen %> <br>
 		<%= jpy(@product.non_taxed_price) %></strong>
 	</div>
 </div>
