@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  
+
   def index
     @genres = Genre.where(genres: {is_valid: "true"})
      products = Product.includes(:genre).where(genres: {is_valid: "true"}).where(has_sold: "true")
