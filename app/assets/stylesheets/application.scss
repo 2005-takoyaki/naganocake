@@ -16,8 +16,13 @@
 
  @import "bootstrap";
 
-* {
-  background-color: #F3FFD8;
+ body {
+  background-image: url("25905_1.jpg");
+  background-color: rgba(243,255,216,0.6);
+  background-blend-mode: lighten;
+ }
+
+ * {
   font-family: serif;
   color: #223a70
  }
