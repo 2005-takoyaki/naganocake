@@ -54,7 +54,7 @@
           <%= f.label :key, '登録済住所から選択' %><br>
           <div class="pl-5">
             <%= f.fields_for @ship do |i| %>
-              <%= i.collection_select :id, Ship.where(customer_id: current_customer.id), :id, :view_all_customer_date, class: "form-control" %>
+              <%= i.collection_select :id, Ship.where(customer_id: current_customer.id), :id, :view_all_customer_date, {}, class: 'col-sm-4 form-control primary' %>
             <% end %>
           </div>
         </div>
@@ -66,18 +66,18 @@
         <%= f.label :key, '新しいお届け先' %><br>
         <div class="pl-5">
           <%= f.fields_for @ship do |i| %>
-            <table class="table table-sm table-borderless col-10">
+            <table class="table table-sm table-borderless col-sm-10">
               <tr>
                 <td><%= i.label :postal_code, '郵便番号(ハイフンなし)' %></td>
-                <td><%= i.text_field :postal_code, size:30 %></td>
+                <td><%= i.text_field :postal_code ,class: "col-sm-5 form-control" %></td>
               </tr>
               <tr>
                 <td><%= i.label :address, "住所" %></td>
-                <td><%= i.text_field :address, size:60%></td>
+                <td><%= i.text_field :address, size:60,class: "form-control" %></td>
               </tr>
               <tr>
                 <td><%= i.label :name, '宛名' %></td>
-                <td><%= i.text_field :name, size:30 %></td>
+                <td><%= i.text_field :name, size:30,class: "col-sm-5 form-control" %></td>
               </tr>
             </table>
           <% end %>

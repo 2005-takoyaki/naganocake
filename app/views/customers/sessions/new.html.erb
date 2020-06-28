@@ -3,7 +3,13 @@
     <!-- ログインフォーム -->
     <div class="form-group">
       <h5><span>会員の方はこちらからログイン</span></h5>
+
       <%= form_for(resource, as: resource_name, url: customers_sign_in_path) do |f| %>
+
+      <div class="login-error row">
+        <%= flash[:error] %>
+      </div>
+
       <div class="row ml-5">
         <%= f.label :email, "メールアドレス", class: "col-sm-2" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-sm-7 form-control" %>
@@ -17,8 +23,9 @@
 
       <div class="row actions ml-5">
         <div class="col-sm-2"></div>
-        <%= f.submit 'ログイン', class: 'btn btn-primary col-sm-2' %>
+        <%= f.submit 'ログイン', class: 'btn btn-primary col-sm-2 form-control' %>
       </div>
+
       <% end %>
     </div>
   </div>
