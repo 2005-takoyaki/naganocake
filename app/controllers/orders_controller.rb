@@ -19,9 +19,9 @@ class OrdersController < ApplicationController
 
   def confirmation_new
     @order = current_customer.orders.new(order_params)
-    @order_ship = Ship.find(params[:order][:ship][:id])
-  rescue
-  ensure
+    if current_customer.ships.where(customer_id: current_customer.id).present?
+      @order_ship = Ship.find(params[:order][:ship][:id])
+    end
     @order.fare = 800
     @ship = current_customer.ships.new(postal_code: params[:order][:ship][:postal_code], address: params[:order][:ship][:address], name: params[:order][:ship][:name])
     render :new unless @ship.valid? if params[:order][:key] == 'new_address'
