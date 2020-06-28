@@ -4,14 +4,9 @@
   </div>
 </div>
 
-
-<div class="row">
-
-  <div id="c">
+  <div class="row" id="cart_table">
     <%= render 'cart_products/confirmation_new', { cart_products: @cart_products, order: @order } %>
   </div>
-
-</div>
 
 <%= form_with model: @order, local: true do |f| %>
   <!-- 支払方法 -->
