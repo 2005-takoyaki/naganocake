@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
-  # before_action :authenticate_customer!only: [:index,:show]
+  def self.has_sold
+    where(has_sold: true)
+  end
+
   def index
     @genres = Genre.where(genres: {is_valid: "true"})
     # urlにgenre_id(params)がある場合
@@ -7,7 +10,7 @@ class ProductsController < ApplicationController
       # Genreのデータベースのテーブルから一致するidを取得
       genre = Genre.find(params[:genre_id])
       # genre_idと紐づく商品を取得
-      products = genre.products.order(created_at: :desc)
+      products = genre.products.has_sold.order(created_at: :desc)
       @products = Kaminari.paginate_array(products).page(params[:page]).per(8)
       @products_cnt = Product.count
     else

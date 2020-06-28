@@ -11,12 +11,12 @@
       <%= render 'customer', customers: @customers %>
 
     <!-- 商品のみヒット -->
-    <% elsif @products.present? && @customers.blank? %>
+    <% elsif @products.present? && @customers.blank? && @genres.blank?%>
       <!-- 商品 -->
       <%= render 'product', products: @products %>
 
     <!-- 顧客のみヒット -->
-    <% elsif @products.blank? && @customers.present? %>
+    <% elsif @products.blank? && @customers.present? && @genres.blank?%>
 
       <!-- 顧客 -->
       <%= render 'customer', customers: @customers %>
