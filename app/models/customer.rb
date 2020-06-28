@@ -17,7 +17,7 @@ class Customer < ApplicationRecord
   def password_complexity
     return if password.blank? || password =~ /\A[a-z0-9]+\z/i
 
-    errors.add :password, 'は不正な値です。'
+    errors.add :password, 'は不正な値です'
   end
 
 
