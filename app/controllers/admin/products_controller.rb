@@ -22,18 +22,18 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
     if
     #binding.pry
-    @product.save
-    redirect_to '/admin/products'
+      @product.save
+      redirect_to admin_product_path(@product)
     else
-    @error = @product.errors.full_messages
-    if @error.include?("ジャンルを入力してください")
-       @error.delete("ジャンルを入力してください")
-    end
+      @error = @product.errors.full_messages
+      if @error.include?("ジャンルを入力してください")
+        @error.delete("ジャンルを入力してください")
+      end
     # if @error.include?("Genreを入力してください")
     # @error.delete("Genreを入力してください")
     # @error.push("ジャンルを入力してください")
     # @error_class = 1
-    render :new
+      render :new
     #end
     end
   end
