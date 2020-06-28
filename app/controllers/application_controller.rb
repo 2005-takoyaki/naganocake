@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
-  helper_method :current_cart
+  helper_method :current_cart, :comma_price, :billion_price
 
 
   protected
@@ -49,6 +49,26 @@ class ApplicationController < ActionController::Base
       redirect_to admin_path
     end
   end
+
+  #ログイン顧客を弾く
+  def prohibition_customer
+    if current_customer
+      redirect_to customers_path
+    end
+  end
+
+  def comma_price(maney = 0)
+    maney.floor.to_s(:delimited)
+  end
+
+  def billion_price(maney = 0)
+    maney += 800
+    maney.floor.to_s(:delimited)
+  end
+
+
+
+
 
 
 end
