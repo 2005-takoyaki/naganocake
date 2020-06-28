@@ -2,7 +2,6 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin
 
   def index
-    binding.pry
     before_uri = URI.parse(request.referer) # 遷移前のURL取得
     path = Rails.application.routes.recognize_path(before_uri.path) # パスに変換
 
