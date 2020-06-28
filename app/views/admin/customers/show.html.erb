@@ -7,7 +7,7 @@
         <p>顧客ID</p>
       </div>
       <div class="form-group col-sm-3">
-        <p><%= @customer.id %><span class="customer-status offset-sm-1"><%= status(@customer.is_valid) %>会員</span></p>
+        <p><%= @customer.id %><span class="customer-status offset-sm-1", style='background-color: <%= foo_color(@customer.is_valid) %>'><%= status(@customer.is_valid) %>会員</span></p>
       </div>
     </div>
     <div class="form-row">
