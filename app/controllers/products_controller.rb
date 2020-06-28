@@ -12,11 +12,13 @@ class ProductsController < ApplicationController
       products = genre.products.order(created_at: :desc).where(has_sold: "true")
       @products = Kaminari.paginate_array(products).page(params[:page]).per(8)
       @products_cnt = Product.count
+      @products_name = genre.genre_name
     else
       # 投稿すべてを取得
       @products_cnt = Product.count
       products = Product.includes(:genre).where(genres: {is_valid: "true"}).where(has_sold: "true")
       @products = Kaminari.paginate_array(products).page(params[:page]).per(8)
+      @products_name = "商品"
     end
 
   end
