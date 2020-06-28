@@ -7,7 +7,7 @@
   <div class="col-md-8 offset-md-2">
     <table class="table">
       <thead>
-        <tr class="thead-light">
+        <tr class="table-info">
           <th>ジャンルID</th>
           <th>ジャンル名</th>
           <th>ステータス</th>
@@ -15,7 +15,7 @@
       </thead>
       <tbody>
         <% genres.each do |genre| %>
-          <tr>
+          <tr class="table-light">
             <td><%= genre.id %></td>
             <td><%= link_to genre.genre_name, admin_genres_path(genre.id) %></td>
             <td><%= status(genre.is_valid) %></td>
