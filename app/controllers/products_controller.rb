@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  
+
   def index
     @genres = Genre.where(genres: {is_valid: "true"})
     # urlにgenre_id(params)がある場合
