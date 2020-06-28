@@ -5,6 +5,10 @@ class CartProductsController < ApplicationController
     @cart_product = current_cart.cart_products.find_by(product_id: params[:product_id])
     if @cart_product&.product_id.nil?
       @cart_product = current_cart.cart_products.build(cart_product_params)
+      if @cart_product.quantity.nil?
+        redirect_back(fallback_location: root_path)
+        return
+      end
       @cart_product.save
       redirect_to cart_products_path
     else
