@@ -23,4 +23,13 @@ module Admin::AdminHelper
     !current_admin.nil?
   end
 
+  # 渡された値で色を変える
+  def foo_color(var)
+    if var == true
+      "#99CCFF"
+    else
+      "#FF6666"
+    end
+  end
+
 end
