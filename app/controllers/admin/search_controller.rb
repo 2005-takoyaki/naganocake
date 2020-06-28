@@ -4,6 +4,7 @@ class Admin::SearchController < ApplicationController
   def index
     content = params[:search][:content]
     if content.present?
+      @genres = Genre.where('genre_name LIKE ?', "%#{content}%")
       @products = Product.where('name LIKE ?', "%#{content}%")
       @customers = Customer.where(['last_name || first_name LIKE ? OR kana_last_name || kana_first_name LIKE ?', "%#{content}%", "%#{content}%"])
     else

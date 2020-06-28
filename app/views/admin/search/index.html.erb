@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-sm">
     <h6>検索ワード    "<%= params[:search][:content] %>"</h6>
-    <!-- 顧客と商品がヒット -->
-    <% if @products.present? && @customers.present? %>
+    <!-- 顧客と商品とジャンルがヒット -->
+    <% if @products.present? && @customers.present? && @genres.present? %>
 
       <!-- 商品 -->
       <%= render 'product', products: @products %>
@@ -10,19 +10,56 @@
       <!-- 顧客 -->
       <%= render 'customer', customers: @customers %>
 
+      <!-- ジャンル -->
+      <%= render 'genre', genres: @genres %>
+
+      <!-- 顧客と商品がヒット -->
+    <% elsif @products.present? && @customers.present? && @genres.blank? %>
+
+      <!-- 商品 -->
+      <%= render 'product', products: @products %>
+
+      <!-- 顧客 -->
+      <%= render 'customer', customers: @customers %>
+
+
+      <!-- 顧客とジャンルがヒット -->
+    <% elsif @products.blank? && @customers.present? && @genres.present? %>
+
+      <!-- 商品 -->
+      <%= render 'product', products: @products %>
+
+      <!-- ジャンル -->
+      <%= render 'genre', customers: @genres %>
+
+      <!-- ジャンルと商品がヒット -->
+    <% elsif @products.present? && @customers.blank? && @genres.present? %>
+
+      <!-- 商品 -->
+      <%= render 'product', products: @products %>
+
+      <!-- ジャンル -->
+      <%= render 'genre', genres: @genres %>
+
     <!-- 商品のみヒット -->
-    <% elsif @products.present? && @customers.blank? %>
+    <% elsif @products.present? && @customers.blank? && @genres.blank? %>
       <!-- 商品 -->
       <%= render 'product', products: @products %>
 
     <!-- 顧客のみヒット -->
-    <% elsif @products.blank? && @customers.present? %>
+    <% elsif @products.blank? && @customers.present? && @genres.blank? %>
 
       <!-- 顧客 -->
       <%= render 'customer', customers: @customers %>
 
+    <!-- ジャンルのみヒット -->
+    <% elsif @products.blank? && @customers.blank? && @genres.present? %>
+
+      <!-- ジャンル -->
+      <%= render 'genre', genres: @genres %>
+
     <!-- どちらもヒットせず -->
-    <% else @products.blank? && @customers.blank? %>
+    <% else @products.blank? && @customers.blank? && @genres.blank? %>
       <h4>検索結果が見つかりませんでした</h4>
 
     <% end %>
