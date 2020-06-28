@@ -65,8 +65,6 @@ class OrdersController < ApplicationController
         cart_product.destroy
       end
 
-
-
     if params[:order][:key] == 'new_address'
       ship = current_customer.ships.new
       ship.postal_code = order.postal_code
@@ -74,7 +72,6 @@ class OrdersController < ApplicationController
       ship.name = order.address_name
       ship.save
     end
-
 
     redirect_to complete_orders_path
 
